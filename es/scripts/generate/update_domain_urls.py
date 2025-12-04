@@ -20,19 +20,44 @@ BASE_DIR = Path(__file__).parent.parent.parent
 TRANSLATIONS_CSV = BASE_DIR / 'translations.csv'
 INDEX_HTML = BASE_DIR / 'index.html'
 
+def detect_language_code():
+    """Détecte le code de langue depuis le nom du dossier parent."""
+    base_name = BASE_DIR.name.lower()
+    # Si le nom du dossier est une langue (2 lettres), on est dans un dossier de langue
+    if len(base_name) == 2 and base_name.isalpha():
+        return base_name
+    return 'en'  # Par défaut, anglais (racine)
+
 def load_domain_from_csv():
-    """Charge le domaine depuis translations.csv (colonne 'en')."""
+    """Charge le domaine depuis translations.csv (colonne détectée automatiquement)."""
     if not TRANSLATIONS_CSV.exists():
         print(f"❌ Fichier non trouvé: {TRANSLATIONS_CSV}")
         return None
     
+    lang_code = detect_language_code()
+    
     try:
         with open(TRANSLATIONS_CSV, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
+            fieldnames = list(reader.fieldnames)
+            
+            # Chercher la colonne de langue (lang_code_auto ou lang_code)
+            lang_col = None
+            if f'{lang_code}_auto' in fieldnames:
+                lang_col = f'{lang_code}_auto'
+            elif lang_code in fieldnames:
+                lang_col = lang_code
+            elif 'en' in fieldnames:
+                lang_col = 'en'  # Fallback sur 'en'
+            
             for row in reader:
                 key = row.get('key', '').strip()
                 if key == 'site.domain':
-                    domain = row.get('en', '').strip()
+                    if lang_col:
+                        domain = row.get(lang_col, '').strip()
+                    else:
+                        domain = row.get('en', '').strip()
+                    
                     if domain and not domain.startswith('='):
                         # S'assurer que le domaine se termine par / pour la racine
                         if not domain.endswith('/'):
@@ -111,6 +136,7 @@ def find_old_domain_in_content(content):
         r'https?://votresite\.com',
         r'https?://localhost:\d+',
         r'https?://makita-shop\.pages\.dev',
+        r'https?://www\.senseofthailand\.com',
     ]
     
     for pattern in known_patterns:
@@ -293,4 +319,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
