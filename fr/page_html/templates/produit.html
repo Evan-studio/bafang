@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Découvrez ce produit AliExpress avec notre lien d'affiliation. Offres exclusives et prix compétitifs.">
+<title>Produit - Affiliation AliExpress</title>
+<link rel="icon" type="image/x-icon" href="../../../images/favicon/favicon.ico">
+<link rel="alternate" hreflang="fr" href="https://votresite.com/fr/produit.html" />
+<link rel="alternate" hreflang="en" href="https://votresite.com/en/produit.html" />
+<link rel="alternate" hreflang="x-default" href="https://votresite.com/fr/produit.html" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6;color:#333;background:#fff}
+header{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.1);position:sticky;top:0;z-index:1000}
+nav{max-width:1200px;margin:0 auto;padding:1.5rem 1rem;display:flex;justify-content:center;align-items:center;gap:2rem;position:relative}
+.logo{font-size:1.5rem;font-weight:700;color:#e60012;display:flex;align-items:center;gap:.5rem;flex-shrink:0;position:absolute;left:1rem;min-width:200px;text-decoration:none}
+.logo img{height:60px;width:auto;object-fit:contain;display:block}
+.menu{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap;margin:0 auto}
+.menu a{color:#333;text-decoration:none;font-weight:500;transition:color .2s;white-space:nowrap}
+.menu a:hover{color:#e60012}
+.menu-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#333}
+@media (max-width:768px){
+.menu-toggle{display:block}
+.menu{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1rem;box-shadow:0 4px 6px rgba(0,0,0,.1);display:none;gap:0}
+.menu.active{display:flex}
+.menu a{padding:.75rem 1rem;border-bottom:1px solid #f0f0f0}
+.menu a:last-child{border-bottom:none}
+.logo{min-width:auto;left:0.5rem}
+.logo img{height:35px !important}
+nav{padding:.75rem}
+}
+.product-detail{max-width:1200px;margin:0 auto;padding:3rem 1rem}
+.product-header{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:3rem}
+.product-images{display:flex;flex-direction:column;gap:1rem}
+.main-image{width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;background:#f5f5f5;display:block}
+.main-video{width:100%;aspect-ratio:1;border-radius:8px;background:#000;display:none}
+.thumbnails{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.thumbnail{width:100%;aspect-ratio:1;object-fit:contain;border-radius:4px;cursor:pointer;opacity:.7;transition:opacity .2s;background:#f5f5f5}
+.thumbnail-video{width:100%;aspect-ratio:1;border-radius:4px;cursor:pointer;opacity:.7;transition:opacity .2s;background:#000;position:relative;display:flex;align-items:center;justify-content:center}
+.thumbnail-video::before{content:'▶';position:absolute;color:#fff;font-size:1.5rem;z-index:1}
+.thumbnail-video img{width:100%;height:100%;object-fit:cover;opacity:.6}
+.thumbnail:hover,.thumbnail.active,.thumbnail-video:hover,.thumbnail-video.active{opacity:1;border:2px solid #e60012}
+.product-info h1{font-size:1.5rem;margin-bottom:1rem;color:#333}
+.product-price{color:#e60012;font-weight:700;font-size:1.5rem;margin:1rem 0}
+.description-short{margin:1.5rem 0;padding:1rem;background:#f9f9f9;border-radius:4px;color:#666;text-align:left;line-height:1.7}
+.description-long{margin:3rem 0;padding:2rem;background:#fafafa;border-radius:8px;line-height:1.9;color:#555;width:100%;max-width:100%;font-size:1.05rem;text-align:left}
+.description-long p{margin-bottom:1.2rem;text-align:left}
+.description-long p:first-child{margin-top:0}
+.description-long p:last-child{margin-bottom:0}
+.description-long ul,.description-long ol{margin:1.5rem 0;padding-left:0;line-height:1.8;list-style:none}
+.description-long li{margin-bottom:.8rem;padding-left:0}
+.description-long strong{color:#333;font-weight:600}
+.description-long em{color:#666;font-style:italic}
+.description-long h1,.description-long h2,.description-long h3,.description-long h4,.description-long h5,.description-long h6{display:none}
+.cta-button{display:inline-block;padding:1rem 2rem;background:transparent;color:#666;border:2px solid #999;text-align:center;text-decoration:none;border-radius:4px;font-weight:600;transition:color .2s,border-color .2s;margin-top:1rem;font-size:1.1rem}
+.cta-button:hover{color:#e60012;border-color:#e60012}
+.reviews-section{margin-top:3rem;padding-top:3rem;border-top:1px solid #e0e0e0}
+.reviews-title{font-size:1.5rem;margin-bottom:2rem;color:#333}
+.review-card{background:#f9f9f9;padding:1.5rem;border-radius:8px;margin-bottom:1.5rem}
+.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+.review-author{font-weight:600;color:#333}
+.review-date{color:#666;font-size:.9rem}
+.stars{color:#ffc107;font-size:1.2rem;letter-spacing:.2rem}
+.review-text{color:#666;line-height:1.6}
+.loading{text-align:center;padding:4rem 2rem;color:#666}
+footer{background:#f5f5f5;padding:2rem 1rem;margin-top:4rem;text-align:center;color:#666}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-bottom:1rem}
+.footer-links a{color:#666;text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#e60012}
+@media (max-width:768px){
+.product-header{grid-template-columns:1fr;gap:2rem}
+.product-detail{padding:2rem 1rem}
+.product-info h1{font-size:1.3rem}
+.thumbnails{grid-template-columns:repeat(3,1fr)}
+.description-long{padding:1.5rem;margin:2rem 0;font-size:1rem}
+.description-long ul,.description-long ol{padding-left:1.5rem}
+.reviews-section{margin-top:2rem;padding-top:2rem}
+.reviews-title{font-size:1.3rem}
+.review-card{padding:1rem}
+.footer-links{flex-direction:column;gap:1rem}
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="index.html" class="logo" id="logo"></a>
+<ul class="menu" id="menu">
+<li><a href="index.html">Accueil</a></li>
+<li><a href="tentes.html">Tentes</a></li>
+<li><a href="mobilier.html">Mobilier</a></li>
+<li><a href="couchage.html">Couchage</a></li>
+<li><a href="cuisine.html">Cuisine</a></li>
+<li><a href="vetement.html">Vêtement</a></li>
+</ul>
+<button class="menu-toggle" id="menu-toggle" aria-label="Menu">☰</button>
+</nav>
+</header>
+<div class="product-detail">
+<div id="product-container" class="loading">Chargement du produit...</div>
+</div>
+<footer>
+<div class="footer-links">
+<a href="index.html">Accueil</a>
+<a href="sitemap.html">Plan du site</a>
+<a href="conditions-utilisation.html">Conditions d'utilisation</a>
+<a href="mentions-legales.html">Mentions légales</a>
+<a href="politique-confidentialite.html">Politique de confidentialité</a>
+</div>
+<p>Contactez-nous : <a href="mailto:contact@naturehike-shop.com">contact@naturehike-shop.com</a></p>
+<p>&copy; 2024 AliExpress Affiliate. Tous droits réservés.</p>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded',async()=>{
+const menuToggle=document.getElementById('menu-toggle');
+const menu=document.getElementById('menu');
+if(menuToggle&&menu){
+menuToggle.addEventListener('click',()=>{menu.classList.toggle('active')});
+}
+let config={};
+try{
+const response=await fetch('config.json');
+if(response.ok)config=await response.json();
+}catch(e){}
+const site=config.site||{};
+const logoEl=document.getElementById('logo');
+if(logoEl&&site.logo){
+if(site.logo.type==='image'&&site.logo.image){
+const img=document.createElement('img');
+img.src=site.logo.image;
+img.alt=site.title||'Logo';
+img.loading='eager';
+logoEl.appendChild(img);
+}else if(site.logo.text){
+logoEl.textContent=site.logo.text;
+}
+}
+const urlParams=new URLSearchParams(window.location.search);
+const productId=urlParams.get('id');
+if(!productId){
+document.getElementById('product-container').innerHTML='<div class="loading">Produit non trouvé</div>';
+return;
+}
+const container=document.getElementById('product-container');
+const loadProduct=async()=>{
+try{
+let products=[];
+// Essayer plusieurs sources
+const sources=['all_products.json','products-couchage.json','products_couchage.json'];
+for(const source of sources){
+try{
+const response=await fetch(source);
+if(response.ok){
+products=await response.json();
+break;
+}
+}catch(e){}
+}
+if(products.length===0){
+throw new Error('Fichier produits introuvable');
+}
+const product=products.find(p=>String(p.id)===String(productId));
+if(!product){
+container.innerHTML='<div class="loading">Produit non trouvé (ID: '+productId+')</div>';
+return;
+}
+// Mettre à jour les balises meta
+document.title=(product.meta_title||product.title||'Produit')+' - '+(site.title||'Affiliation AliExpress');
+const metaDesc=document.querySelector('meta[name="description"]');
+if(metaDesc)metaDesc.content=product.meta_description||product.description_short||'Découvrez ce produit AliExpress';
+// Ajouter meta keywords si nécessaire
+let metaKeywords=document.querySelector('meta[name="keywords"]');
+if(!metaKeywords){
+metaKeywords=document.createElement('meta');
+metaKeywords.name='keywords';
+document.head.appendChild(metaKeywords);
+}
+metaKeywords.content=(product.meta_title||product.title||'produit')+', AliExpress, couchage';
+// Utiliser images si disponible, sinon utiliser image comme tableau
+const images=product.images&&product.images.length>0?product.images:(product.image?[product.image]:[]);
+const mainImage=images[0]||product.image||'';
+const currentProductId=String(product.id);
+// Vérifier si une vidéo existe pour ce produit
+const hasVideo=product.video&&product.video.trim()!=='';
+const videoUrl=product.video||'';
+let html='<div class="product-header">';
+html+='<div class="product-images">';
+html+=`<img src="${mainImage}" alt="${product.title||product.name}" class="main-image" id="main-image">`;
+if(hasVideo&&videoUrl){
+html+=`<video id="main-video" class="main-video" controls preload="none" poster="${mainImage}"><source src="${videoUrl}" type="video/mp4">Votre navigateur ne supporte pas la vidéo.</video>`;
+}
+if(images.length>1||hasVideo){
+html+='<div class="thumbnails">';
+images.forEach((img,idx)=>{
+html+=`<img src="${img}" alt="Image ${idx+1}" class="thumbnail ${idx===0?'active':''}" onclick="showImage('${img}',event)">`;
+});
+if(hasVideo){
+html+=`<div class="thumbnail-video" onclick="showVideo(event)"><img src="${mainImage}" alt="Vidéo"></div>`;
+}
+html+='</div>';
+}
+html+='</div>';
+html+='<div class="product-info">';
+html+=`<h1>${product.title||product.name||'Produit'}</h1>`;
+if(product.price){
+html+=`<div class="product-price">${product.price}</div>`;
+}
+if(product.description_short){
+html+=`<div class="description-short">${product.description_short}</div>`;
+}
+if(product.affiliate_link){
+html+=`<a href="${product.affiliate_link}" class="cta-button" target="_blank" rel="noopener noreferrer">Voir sur AliExpress</a>`;
+}
+html+='</div>';
+html+='</div>';
+if(product.description_long||product.description){
+let desc=product.description_long||product.description||'';
+const tempDiv=document.createElement('div');
+tempDiv.innerHTML=desc;
+const headings=tempDiv.querySelectorAll('h1,h2,h3,h4,h5,h6');
+headings.forEach(h=>h.remove());
+desc=tempDiv.innerHTML;
+if(desc.trim()){
+html+=`<div class="description-long">${desc}</div>`;
+}
+}
+html+='<div class="reviews-section">';
+html+='<h2 class="reviews-title">Avis Clients</h2>';
+html+='<div id="reviews-container"></div>';
+html+='</div>';
+container.innerHTML=html;
+window.showImage=function(imgSrc,evt){
+const mainImg=document.getElementById('main-image');
+const mainVid=document.getElementById('main-video');
+if(mainImg){
+mainImg.src=imgSrc;
+mainImg.style.display='block';
+}
+if(mainVid){
+mainVid.style.display='none';
+mainVid.pause();
+}
+document.querySelectorAll('.thumbnail,.thumbnail-video').forEach(t=>t.classList.remove('active'));
+if(evt&&evt.target)evt.target.closest('.thumbnail,.thumbnail-video')?.classList.add('active');
+};
+window.showVideo=function(evt){
+const mainImg=document.getElementById('main-image');
+const mainVid=document.getElementById('main-video');
+if(mainImg)mainImg.style.display='none';
+if(mainVid){
+mainVid.style.display='block';
+mainVid.load();
+mainVid.play().catch(e=>console.log('Autoplay bloqué:',e));
+}
+document.querySelectorAll('.thumbnail,.thumbnail-video').forEach(t=>t.classList.remove('active'));
+if(evt&&evt.target)evt.target.closest('.thumbnail-video')?.classList.add('active');
+};
+const reviewsContainer=document.getElementById('reviews-container');
+if(reviewsContainer){
+const reviews=[
+{name:'Marie',date:'15/11/2024 14:30',comment:'Excellent produit, très satisfaite de mon achat. Qualité au rendez-vous et livraison rapide !',stars:5},
+{name:'Jean',date:'12/11/2024 10:15',comment:'Très bon rapport qualité-prix. Je recommande vivement ce produit.',stars:5},
+{name:'Sophie',date:'08/11/2024 16:45',comment:'Produit conforme à la description. Très content de mon achat.',stars:5},
+{name:'Pierre',date:'05/11/2024 09:20',comment:'Super produit, dépasse mes attentes. Livraison rapide et emballage soigné.',stars:5},
+{name:'Emma',date:'01/11/2024 11:00',comment:'Excellent achat ! Je suis très satisfaite, je recommande sans hésitation.',stars:5}
+];
+let reviewsHtml='';
+reviews.forEach(review=>{
+reviewsHtml+='<div class="review-card">';
+reviewsHtml+='<div class="review-header">';
+reviewsHtml+=`<div><span class="review-author">${review.name}</span> <span class="stars">${'★'.repeat(review.stars)}</span></div>`;
+reviewsHtml+=`<div class="review-date">${review.date}</div>`;
+reviewsHtml+='</div>';
+reviewsHtml+=`<div class="review-text">${review.comment}</div>`;
+reviewsHtml+='</div>';
+});
+reviewsContainer.innerHTML=reviewsHtml;
+}
+}catch(e){
+container.innerHTML='<div class="loading">Erreur lors du chargement du produit: '+e.message+'</div>';
+console.error(e);
+}
+};
+loadProduct();
+});
+</script>
+</body>
+</html>
+

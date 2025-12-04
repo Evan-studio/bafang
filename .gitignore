@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+APPLI:SCRIPT aliexpress/
+sauv/
+.DS_Store
+*.log
+node_modules/
+.git/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+

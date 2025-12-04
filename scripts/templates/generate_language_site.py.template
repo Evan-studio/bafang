@@ -1,0 +1,183 @@
+#!/usr/bin/env python3
+"""
+Script pour générer le site en {{LANG_CODE}} uniquement
+Ce script ne touche que les fichiers dans le dossier {{LANG_CODE}}/
+"""
+
+import sys
+from pathlib import Path
+
+# Le BASE_DIR est le dossier de la langue (ex: /fr/, /es/)
+BASE_DIR = Path(__file__).parent.parent.parent
+ROOT_DIR = BASE_DIR.parent  # Remonter à la racine du projet
+
+# Ajouter les scripts de la langue au path
+sys.path.insert(0, str(BASE_DIR / 'scripts' / 'generate'))
+
+# Importer les fonctions de génération (à adapter selon la langue)
+from generate_index import generate_index_html
+from generate_category_pages import generate_all_category_pages
+from generate_products import generate_all_product_pages
+from generate_legal_pages import generate_all_legal_pages
+from template_utils import load_translations_from_csv
+from generate_menu import load_categories
+import re
+
+def find_orphaned_category_pages(valid_slugs):
+    """Trouve les pages catégories orphelines dans le dossier de la langue."""
+    orphaned = []
+    categories_dir = BASE_DIR / 'page_html' / 'categories'
+    
+    if categories_dir.exists():
+        for html_file in categories_dir.glob('*.html'):
+            slug = html_file.stem
+            if slug not in valid_slugs:
+                orphaned.append(html_file.name)
+    
+    return orphaned
+
+def find_orphaned_product_pages(valid_product_ids):
+    """Trouve les pages produits orphelines dans le dossier de la langue."""
+    orphaned = []
+    products_dir = BASE_DIR / 'page_html' / 'products'
+    
+    if products_dir.exists():
+        for html_file in products_dir.glob('produit-*.html'):
+            match = re.match(r'produit-(\d+)\.html', html_file.name)
+            if match:
+                product_id = match.group(1)
+                if product_id not in valid_product_ids:
+                    orphaned.append(html_file.name)
+    
+    return orphaned
+
+def delete_orphaned_pages(orphaned_files, page_type='category'):
+    """Supprime les pages orphelines dans le dossier de la langue."""
+    if not orphaned_files:
+        return 0
+    
+    deleted = 0
+    if page_type == 'category':
+        base_dir = BASE_DIR / 'page_html' / 'categories'
+    elif page_type == 'product':
+        base_dir = BASE_DIR / 'page_html' / 'products'
+    else:
+        return 0
+    
+    for filename in orphaned_files:
+        file_path = base_dir / filename
+        if file_path.exists():
+            try:
+                file_path.unlink()
+                print(f"  🗑️  Supprimé: {filename}")
+                deleted += 1
+            except Exception as e:
+                print(f"  ❌ Erreur lors de la suppression de {filename}: {e}")
+    
+    return deleted
+
+def load_products_from_csv():
+    """Charge les produits depuis le CSV (depuis la racine)."""
+    import csv
+    csv_file = ROOT_DIR / 'CSV' / 'all_products.csv'
+    if not csv_file.exists():
+        return []
+    
+    products = []
+    try:
+        with open(csv_file, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                products.append(row)
+        return products
+    except Exception as e:
+        print(f"❌ Erreur lors de la lecture du CSV: {e}")
+        return []
+
+def main():
+    """Fonction principale pour générer le site dans la langue."""
+    lang_code = '{{LANG_CODE}}'
+    lang_name = '{{LANG_NAME}}'
+    
+    print("=" * 60)
+    print(f"🌍 GÉNÉRATION DU SITE {lang_name.upper()}")
+    print("=" * 60)
+    
+    # Charger les traductions
+    print("\n📖 Chargement des traductions...")
+    translations = load_translations_from_csv()
+    print(f"✅ {len(translations)} clés de traduction chargées")
+    
+    # 1. Vérifier et nettoyer les catégories orphelines
+    print("\n📋 Étape 1: Vérification des catégories")
+    print("-" * 60)
+    categories = load_categories()
+    valid_slugs = {cat['slug'] for cat in categories}
+    
+    orphaned_categories = find_orphaned_category_pages(valid_slugs)
+    if orphaned_categories:
+        print(f"⚠️  {len(orphaned_categories)} catégorie(s) orpheline(s) détectée(s)")
+        deleted = delete_orphaned_pages(orphaned_categories, 'category')
+        if deleted > 0:
+            print(f"✅ {deleted} catégorie(s) orpheline(s) supprimée(s)")
+    else:
+        print("✅ Aucune catégorie orpheline")
+    
+    print(f"✅ {len(categories)} catégorie(s) valide(s)")
+    
+    # 2. Générer index.html
+    print("\n📄 Étape 2: Génération de index.html")
+    print("-" * 60)
+    generate_index_html(lang_code, BASE_DIR, translations)
+    
+    # 3. Générer les pages catégories
+    print("\n📄 Étape 3: Génération des pages catégories")
+    print("-" * 60)
+    generate_all_category_pages(lang_code, BASE_DIR, translations)
+    
+    # 4. Vérifier et nettoyer les produits orphelins
+    print("\n📋 Étape 4: Vérification des produits")
+    print("-" * 60)
+    products_data = load_products_from_csv()
+    valid_product_ids = {str(p.get('product_id', '')) for p in products_data if p.get('product_id')}
+    
+    orphaned_products = find_orphaned_product_pages(valid_product_ids)
+    if orphaned_products:
+        print(f"⚠️  {len(orphaned_products)} produit(s) orphelin(s) détecté(s)")
+        deleted = delete_orphaned_pages(orphaned_products, 'product')
+        if deleted > 0:
+            print(f"✅ {deleted} produit(s) orphelin(s) supprimé(s)")
+    else:
+        print("✅ Aucun produit orphelin")
+    
+    print(f"✅ {len(valid_product_ids)} produit(s) valide(s)")
+    
+    # 5. Générer les pages produits
+    print("\n📄 Étape 5: Génération des pages produits")
+    print("-" * 60)
+    generate_all_product_pages(lang_code, BASE_DIR, translations)
+    
+    # 6. Générer les pages légales
+    print("\n📄 Étape 6: Génération des pages légales")
+    print("-" * 60)
+    generate_all_legal_pages(lang_code, BASE_DIR, translations)
+    
+    # 7. Résumé
+    print("\n" + "=" * 60)
+    print(f"✅ GÉNÉRATION DU SITE {lang_name.upper()} TERMINÉE")
+    print("=" * 60)
+    print(f"\n📊 Résumé:")
+    print(f"   - Catégories: {len(categories)}")
+    print(f"   - Produits: {len(valid_product_ids)}")
+    print(f"   - Pages générées:")
+    print(f"     • index.html")
+    print(f"     • {len(categories)} pages catégories")
+    print(f"     • {len(valid_product_ids)} pages produits")
+    print(f"     • 3 pages légales")
+    print(f"\n📁 Dossier: {BASE_DIR}")
+
+if __name__ == "__main__":
+    main()
+
+
+

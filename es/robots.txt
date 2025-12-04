@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Bloquer l'indexation des pages légales
+Disallow: /page_html/legal/terms-of-use.html
+Disallow: /page_html/legal/privacy-policy.html
+Disallow: /page_html/legal/legal-notice.html
+
+# Bloquer l'indexation du sitemap
+Disallow: /sitemap.xml
+Disallow: /sitemap.html
+
+# Désactiver l'indexation des dossiers techniques
+Disallow: /APPLI:SCRIPT aliexpress/
+Disallow: /scripts/
+Disallow: /config/
+Disallow: /CSV/
+Disallow: /copie/
+Disallow: /sauvegarde/
+
+# Autoriser les images
+Allow: /images/
+
+# Autoriser les pages HTML
+Allow: /*.html
+Allow: /page_html/

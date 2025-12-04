@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Entdecken Sie die besten AliExpress-Produkte von MAKITA über unsere Affiliate-Links. Exklusive Angebote und wettbewerbsfähige Preise.">
+<title>AliExpress-Partnerprogramm – Die besten Produkte</title>
+<link rel="icon" type="image/x-icon" href="../images/favicon/favicon.ico">
+<link rel="preload" as="image" href="../images/logo/logo.webp" fetchpriority="high" onerror="console.error('Preload logo failed')" onload="console.log('Preload logo OK')">
+<link rel="alternate" hreflang="de" href="https://www.senseofthailand.com/" />
+<link rel="alternate" hreflang="fr" href="https://www.senseofthailand.com/fr/" />
+<link rel="alternate" hreflang="es" href="https://www.senseofthailand.com/es/" />
+<link rel="alternate" hreflang="x-default" href="https://www.senseofthailand.com/" />
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6;color:#333;background:#fff}
+header{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.1);position:sticky;top:0;z-index:1000}
+nav{max-width:1200px;margin:0 auto;padding:1.5rem 1rem;display:flex;justify-content:center;align-items:center;gap:2rem;position:relative}
+.logo{font-size:1.5rem;font-weight:700;color:#e60012;display:flex;align-items:center;gap:.5rem;flex-shrink:0;position:absolute;left:1rem;min-width:200px;text-decoration:none}
+.logo img{height:60px;width:auto;object-fit:contain;display:block}
+.menu{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap;margin:0 auto}
+.menu a{color:#333;text-decoration:none;font-weight:500;transition:color .2s;white-space:nowrap}
+.menu a:hover{color:#e60012}
+.menu-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#333}
+@media (max-width:768px){
+.menu-toggle{display:block}
+.menu{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1rem;box-shadow:0 4px 6px rgba(0,0,0,.1);display:none;gap:0}
+.menu.active{display:flex}
+.menu a{padding:.75rem 1rem;border-bottom:1px solid #f0f0f0}
+.menu a:last-child{border-bottom:none}
+.logo{min-width:auto;left:0.5rem}
+.logo img{height:35px !important}
+nav{padding:.75rem}
+}
+.hero{background-image:url(../images/hero/hero.webp);background-color:transparent;color:#fff;padding:3rem 1rem;text-align:center;position:relative;background-size:cover;background-position:center;background-repeat:no-repeat;min-height:400px;display:flex;align-items:center;width:100%;margin:0;max-width:100%}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.3);z-index:1}
+.hero-content{position:relative;z-index:2}
+.hero-content{max-width:800px;margin:0 auto}
+.hero h1{font-size:2.5rem;margin-bottom:1rem;font-weight:700}
+.hero p{font-size:1.2rem;margin-bottom:2rem;opacity:.95}
+.hero-button{display:inline-block;padding:1rem 2rem;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7);text-decoration:none;border-radius:4px;font-weight:600;transition:transform .2s,background .2s,border-color .2s}
+.hero-button:hover{transform:translateY(-2px);background:rgba(255,255,255,.1);border-color:#fff}
+section{max-width:1200px;margin:0 auto;padding:3rem 1rem}
+.section-title{font-size:2rem;margin-bottom:2rem;text-align:center;color:#333}
+.categories-section{background:#fff;padding:3rem 1rem}
+.categories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin-top:2rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.category-card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);transition:transform .3s,box-shadow .3s;text-decoration:none;color:inherit;display:block}
+.category-card:hover{transform:translateY(-5px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.category-image{width:100%;aspect-ratio:4/3;object-fit:cover;background:#f5f5f5;display:block}
+.category-info{padding:1.5rem;text-align:center}
+.category-name{font-size:1.3rem;font-weight:600;color:#333;margin:0}
+.presentation{background:#f9f9f9;padding:3rem 1rem;width:100%;max-width:100%}
+.presentation-content{width:90%;max-width:90%;margin:0 auto;text-align:left}
+.presentation h2{font-size:2rem;margin-bottom:1.5rem;color:#333;text-align:center}
+.presentation p{font-size:1.1rem;line-height:1.8;color:#555;margin-bottom:1.2rem;text-align:left}
+.presentation p:last-child{margin-bottom:0}
+#avantages{position:relative;padding:3rem 0}
+#avantages::before,#avantages::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:95%;height:.5px;background:#e0e0e0}
+#avantages::before{top:0}
+#avantages::after{bottom:0}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:2rem}
+.feature-card{text-align:center;padding:1.5rem}
+.feature-icon{font-size:1.5rem;margin-bottom:.75rem;color:#000;font-weight:400;line-height:1}
+.feature-card h3{font-size:1.2rem;margin-bottom:.5rem;color:#333}
+.feature-card p{color:#666}
+.stats-section{background:linear-gradient(135deg,#f8f9fa 0%,#ffffff 100%);padding:4rem 1rem;width:100%;max-width:100%;position:relative}
+.stats-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#e0e0e0 20%,#e0e0e0 80%,transparent)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:2rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.stat-item{background:#fff;padding:2.5rem 2rem;border-radius:12px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:transform .3s ease,box-shadow .3s ease;border:1px solid #f0f0f0;position:relative;overflow:hidden}
+.stat-item::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#e60012,#ff4757);opacity:0;transition:opacity .3s ease}
+.stat-item:hover{transform:translateY(-8px);box-shadow:0 8px 30px rgba(230,0,18,.15)}
+.stat-item:hover::before{opacity:1}
+.stat-icon{font-size:2.5rem;margin-bottom:1rem;opacity:.9;display:block}
+.stat-number{font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,#e60012 0%,#ff4757 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.75rem;line-height:1;letter-spacing:-.02em}
+.stat-label{font-size:1.05rem;color:#555;font-weight:600;letter-spacing:.02em;text-transform:uppercase;font-size:.9rem}
+.faq-section{background:#f9f9f9;padding:3rem 1rem;width:100%;max-width:100%}
+.faq-container{max-width:800px;margin:0 auto}
+.faq-item{background:#fff;border:1px solid #e0e0e0;border-radius:6px;margin-bottom:1rem;overflow:hidden;transition:box-shadow .2s}
+.faq-item:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;cursor:pointer;font-weight:600;color:#333;font-size:1.1rem;user-select:none}
+.faq-question:hover{color:#e60012}
+.faq-icon{font-size:1.2rem;color:#666;transition:transform .3s;flex-shrink:0;margin-left:1rem}
+.faq-item.active .faq-icon{transform:rotate(180deg);color:#e60012}
+.faq-answer{padding:0 1.5rem;max-height:0;overflow:hidden;transition:max-height .3s ease-out,padding .3s;color:#666;line-height:1.7}
+.faq-item.active .faq-answer{padding:0 1.5rem 1.5rem;max-height:500px}
+.testimonials-section{background:#fff;padding:3rem 1rem;width:100%;max-width:100%}
+.testimonials-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem;max-width:1200px;margin-left:auto;margin-right:auto}
+.testimonial-card{background:#f9f9f9;padding:2rem;border-radius:8px;border:1px solid #e0e0e0;transition:transform .2s,box-shadow .2s}
+.testimonial-card:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.testimonial-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.testimonial-avatar{width:60px;height:60px;border-radius:50%;object-fit:cover;background:#e0e0e0;flex-shrink:0}
+.testimonial-info{flex:1}
+.testimonial-name{font-weight:600;color:#333;font-size:1.1rem;margin-bottom:.25rem}
+.testimonial-stars{color:#ffc107;font-size:1.1rem;letter-spacing:.1rem;margin-bottom:.5rem}
+.testimonial-text{color:#666;line-height:1.7;font-size:1rem}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.product-card{background:#fff;border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
+.product-image{width:100%;aspect-ratio:1;object-fit:contain;background:#f5f5f5;display:block}
+.product-info{padding:.75rem}
+.product-title{font-size:.75rem;font-weight:600;margin-bottom:.4rem;color:#333;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-rating{display:flex;align-items:center;gap:.4rem;margin:.4rem 0;font-size:.7rem}
+.product-stars{color:#ffc107;letter-spacing:.08rem}
+.product-reviews{color:#666}
+.product-price{color:#e60012;font-weight:700;font-size:.8rem;margin:.4rem 0}
+.cta-button{display:block;width:100%;padding:.5rem;background:transparent;color:#666;border:1px solid #999;text-align:center;text-decoration:none;border-radius:3px;font-weight:600;transition:color .2s,border-color .2s;margin-top:.4rem;font-size:.7rem}
+.cta-button:hover{color:#e60012;border-color:#e60012}
+.loading{text-align:center;padding:2rem;color:#666}
+footer{background:#f5f5f5;padding:2rem 1rem;margin-top:4rem;text-align:center;color:#666}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-bottom:1rem}
+.footer-links a{color:#666;text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#e60012}
+@media (max-width:768px){
+.hero{min-height:300px;padding:2rem 1rem}
+.hero h1{font-size:1.8rem;margin-bottom:.75rem}
+.hero p{font-size:1rem;margin-bottom:1.5rem}
+.hero-button{padding:.75rem 1.5rem;font-size:.9rem}
+section{padding:2rem 1rem}
+.categories-section{padding:2rem 1rem}
+.categories-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem}
+.category-info{padding:1rem}
+.category-name{font-size:1.1rem}
+.presentation{padding:2rem 1rem}
+.presentation h2{font-size:1.5rem;margin-bottom:1rem}
+.presentation p{font-size:1rem}
+.faq-section{padding:2rem 1rem}
+.faq-question{font-size:1rem;padding:1rem 1.25rem}
+.faq-answer{padding:0 1.25rem}
+.faq-item.active .faq-answer{padding:0 1.25rem 1.25rem}
+.stats-section{padding:3rem 1rem}
+.stats-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.stat-item{padding:2rem 1.5rem}
+.stat-icon{font-size:2rem;margin-bottom:.75rem}
+.stat-number{font-size:2.5rem}
+.stat-label{font-size:.85rem}
+.testimonials-section{padding:2rem 1rem}
+.testimonials-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+.testimonial-card{padding:1.5rem}
+.testimonial-avatar{width:50px;height:50px}
+.testimonial-name{font-size:1rem}
+.testimonial-stars{font-size:1rem}
+.testimonial-text{font-size:.95rem}
+@media (max-width:480px){
+.stats-grid{grid-template-columns:1fr;gap:1.25rem}
+.stat-item{padding:1.75rem 1.25rem}
+.stat-icon{font-size:1.75rem;margin-bottom:.5rem}
+.stat-number{font-size:2.25rem}
+.stat-label{font-size:.8rem}
+.testimonials-grid{grid-template-columns:1fr}
+}
+.section-title{font-size:1.5rem;margin-bottom:1.5rem}
+.products-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.75rem}
+.product-info{padding:.5rem}
+.product-title{font-size:.7rem}
+.product-rating{font-size:.65rem}
+.product-price{font-size:.75rem}
+.cta-button{padding:.4rem;font-size:.65rem}
+.features{grid-template-columns:1fr;gap:1.5rem}
+.feature-card{padding:1rem}
+.feature-icon{font-size:1.2rem;color:#000;font-weight:400;line-height:1}
+.feature-card h3{font-size:1.1rem}
+.feature-card p{font-size:.9rem}
+footer{padding:1.5rem 1rem}
+.footer-links{flex-direction:column;gap:1rem}
+}
+@media (max-width:480px){
+.hero{min-height:250px;padding:1.5rem 1rem}
+.hero h1{font-size:1.5rem}
+.hero p{font-size:.9rem}
+.hero-button{padding:.6rem 1.2rem;font-size:.85rem}
+.categories-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}
+.category-info{padding:.75rem}
+.category-name{font-size:1rem}
+.products-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.5rem}
+.section-title{font-size:1.3rem}
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<meta property="og:title" content="Affiliation AliExpress - Meilleurs Produits">
+<meta property="og:description" content="Découvrez les meilleurs produits AliExpress avec nos liens d&#39;affiliation. Offres exclusives et prix compétitifs.">
+<meta property="og:image" content="https://www.senseofthailand.com/images/hero/hero.webp">
+<meta property="og:url" content="https://www.senseofthailand.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Affiliation AliExpress - Meilleurs Produits">
+<meta name="twitter:description" content="Découvrez les meilleurs produits AliExpress avec nos liens d&#39;affiliation. Offres exclusives et prix compétitifs.">
+<meta name="twitter:image" content="https://www.senseofthailand.com/images/hero/hero.webp">
+<link rel="canonical" href="https://www.senseofthailand.com/">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Organization", "name": "Affiliation AliExpress", "url": "https://www.senseofthailand.com", "contactPoint": {"@type": "ContactPoint", "email": "contact@naturehike-shop.com", "contactType": "Customer Service"}}
+</script>
+</head>
+<body>
+<header>
+<nav>
+<a href="./" class="logo" id="logo"><img src="../images/logo/logo.webp" alt="Logo"></a>
+<ul class="menu" id="menu">
+<li><a href="./">STARTSEITE</a></li>
+<li><a href="page_html/categories/1.html">BOHRER</a></li>
+<li><a href="page_html/categories/2.html">WINKELSCHLEIFER</a></li>
+<li><a href="page_html/categories/3.html">LITHIUMBATTERIE</a></li>
+<li><a href="page_html/categories/4.html">ANDERE</a></li>
+</ul>
+<button class="menu-toggle" id="menu-toggle" aria-label="Menu">☰</button>
+</nav>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="hero">
+<div class="hero-content">
+<h1 id="hero-title">Entdecken Sie die besten Produkte von MAKITA</h1>
+<p id="hero-subtitle">Exklusive Angebote und wettbewerbsfähige Preise für all Ihre Bedürfnisse</p>
+<a href="https://www.aliexpress.com/store/1104758161/pages/all-items.html?spm=a2g0o.store_pc_home.pcShopHead_2012153514384.99&amp;sortType=bestmatch_sort&amp;shop_sortType=bestmatch_sort" class="hero-button" id="hero-button">Produkte ansehen</a>
+</div>
+</section>
+<section class="categories-section">
+<h2 class="section-title">Unsere Kategorien</h2>
+<div class="categories-grid">
+<a href="page_html/categories/1.html" class="category-card">
+<img src="../images/categories/1.webp" alt="Bohrer" class="category-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f5f5f5' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='18'%3EBohrer%3C/text%3E%3C/svg%3E'">
+<div class="category-info">
+<h3 class="category-name">Bohrer</h3>
+</div>
+</a>
+<a href="page_html/categories/2.html" class="category-card">
+<img src="../images/categories/2.webp" alt="Winkelschleifer" class="category-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f5f5f5' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='18'%3EWinkelschleifer%3C/text%3E%3C/svg%3E'">
+<div class="category-info">
+<h3 class="category-name">Winkelschleifer</h3>
+</div>
+</a>
+<a href="page_html/categories/3.html" class="category-card">
+<img src="../images/categories/3.webp" alt="Lithiumbatterie" class="category-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f5f5f5' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='18'%3ELithiumbatterie%3C/text%3E%3C/svg%3E'">
+<div class="category-info">
+<h3 class="category-name">Lithiumbatterie</h3>
+</div>
+</a>
+<a href="page_html/categories/4.html" class="category-card">
+<img src="../images/categories/4.webp" alt="Andere" class="category-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f5f5f5' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='18'%3EAndere%3C/text%3E%3C/svg%3E'">
+<div class="category-info">
+<h3 class="category-name">Andere</h3>
+</div>
+</a>
+</div>
+</section>
+<section class="presentation">
+<div class="presentation-content">
+<h2>Über MAKITA</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Makita ist eine führende japanische Marke in der globalen Elektrowerkzeugbranche und bekannt für Innovation, Langlebigkeit und herausragende Leistung im Profibereich. Das vor über einem Jahrhundert in Japan gegründete Unternehmen Makita hat sich durch die Entwicklung von Werkzeugen, die fortschrittliche Technologie, ergonomischen Komfort und höchste Zuverlässigkeit vereinen, einen exzellenten Ruf erworben. Das umfangreiche Sortiment umfasst Bohrmaschinen, Winkelschleifer, Sägen, Akkus und Zubehör für Profis und anspruchsvolle Heimwerker. Jedes Makita-Werkzeug ist auf Leistung, Präzision und dauerhafte Effizienz ausgelegt und garantiert so optimale Ergebnisse auf jeder Baustelle. Dank des kontinuierlichen Fokus auf Sicherheit, Benutzerkomfort und Produktivität ist Makita weltweit ein verlässlicher Partner für Bau-, Renovierungs-, Holzbearbeitungs- und Industrieanwendungen.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</section>
+<section id="produits">
+<h2 class="section-title">Bestseller</h2>
+<div id="products-container" class="products-grid">
+<article class="product-card">
+<a href="page_html/products/produit-1005009694281678.html" style="text-decoration:none;color:inherit">
+<img src="../images/products/1005009694281678/image_1.jpg" alt="🏆🥇Makita DTD173 Akku-Schlagschrauber, 1800 U/min, 180 Nm bürstenloser Motor, Bohrmaschine für Holz/Schrauben/T-Modus, kompatibel mit Makita 18V Akkus" class="product-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f5f5f5' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='14'%3EImage%3C/text%3E%3C/svg%3E'">
+<div class="product-info">
+<h2 class="product-title">🏆🥇Makita DTD173 Akku-Schlagschrauber, 1800 U/min, 180 Nm bürstenloser Motor, Bohrmaschine für Holz/Schrauben/T-Modus, kompatibel mit Makita 18V Akkus</h2>
+<div class="product-rating">
+<span class="product-stars">★★★★★</span>
+<span class="product-reviews">(85)</span>
+</div><a href="https://s.click.aliexpress.com/e/_c2uFzt29" class="cta-button" target="_blank" rel="noopener noreferrer">Auf AliExpress ansehen</a>
+</div>
+</a>
+</article>
+<article class="product-card">
+<a href="page_html/products/produit-1005009596064339.html" style="text-decoration:none;color:inherit">
+<img src="../images/products/1005009596064339/image_1.jpg" alt="🏆🥇NEU Original Makita DHP487 Akku-Schlagschrauber, bürstenloser Motor, 18 V, wiederaufladbar" class="product-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f5f5f5' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='14'%3EImage%3C/text%3E%3C/svg%3E'">
+<div class="product-info">
+<h2 class="product-title">🏆🥇NEU Original Makita DHP487 Akku-Schlagschrauber, bürstenloser Motor, 18 V, wiederaufladbar</h2>
+<div class="product-rating">
+<span class="product-stars">★★★★★</span>
+<span class="product-reviews">(129)</span>
+</div><a href="https://s.click.aliexpress.com/e/_c4Og4ex3" class="cta-button" target="_blank" rel="noopener noreferrer">Auf AliExpress ansehen</a>
+</div>
+</a>
+</article>
+<article class="product-card">
+<a href="page_html/products/produit-1005009517477968.html" style="text-decoration:none;color:inherit">
+<img src="../images/products/1005009517477968/image_1.jpg" alt="🔥🔋NEU: Makita 18V 6.0 Lithium-Ionen-Akku mit LED-Anzeige, hohe Kapazität für Makita Akku-Elektrowerkzeuge" class="product-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f5f5f5' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='14'%3EImage%3C/text%3E%3C/svg%3E'">
+<div class="product-info">
+<h2 class="product-title">🔥🔋NEU: Makita 18V 6.0 Lithium-Ionen-Akku mit LED-Anzeige, hohe Kapazität für Makita Akku-Elektrowerkzeuge</h2>
+<div class="product-rating">
+<span class="product-stars">★★★★★</span>
+<span class="product-reviews">(70)</span>
+</div><a href="https://s.click.aliexpress.com/e/_c3nZG63T" class="cta-button" target="_blank" rel="noopener noreferrer">Auf AliExpress ansehen</a>
+</div>
+</a>
+</article>
+<article class="product-card">
+<a href="page_html/products/produit-1005009607037535.html" style="text-decoration:none;color:inherit">
+<img src="../images/products/1005009607037535/image_1.jpg" alt="🏆Makita DTW285 18V Akku-Bohrschrauber mit bürstenlosem Motor, 280 Nm Drehmoment, 1/2&quot;-Steckschlüssel, kompatibel mit Makita 18V Akkus" class="product-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f5f5f5' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='14'%3EImage%3C/text%3E%3C/svg%3E'">
+<div class="product-info">
+<h2 class="product-title">🏆Makita DTW285 18V Akku-Bohrschrauber mit bürstenlosem Motor, 280 Nm Drehmoment, 1/2&quot;-Steckschlüssel, kompatibel mit Makita 18V Akkus</h2>
+<div class="product-rating">
+<span class="product-stars">★★★★★</span>
+<span class="product-reviews">(103)</span>
+</div><a href="https://s.click.aliexpress.com/e/_c3NoohAl" class="cta-button" target="_blank" rel="noopener noreferrer">Auf AliExpress ansehen</a>
+</div>
+</a>
+</article>
+<article class="product-card">
+<a href="page_html/products/produit-1005009606964679.html" style="text-decoration:none;color:inherit">
+<img src="../images/products/1005009606964679/image_1.jpg" alt="🏆Makita Akku-Schlagschrauber DHP487 mit bürstenlosem Motor, 40 Nm Drehmoment, zwei Geschwindigkeitsstufen, kabelloser Stromversorgung und Akku" class="product-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23f5f5f5' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-family='Arial' font-size='14'%3EImage%3C/text%3E%3C/svg%3E'">
+<div class="product-info">
+<h2 class="product-title">🏆Makita Akku-Schlagschrauber DHP487 mit bürstenlosem Motor, 40 Nm Drehmoment, zwei Geschwindigkeitsstufen, kabelloser Stromversorgung und Akku</h2>
+<div class="product-rating">
+<span class="product-stars">★★★★★</span>
+<span class="product-reviews">(105)</span>
+</div><a href="https://s.click.aliexpress.com/e/_c3TGxjPR" class="cta-button" target="_blank" rel="noopener noreferrer">Auf AliExpress ansehen</a>
+</div>
+</a>
+</article>
+</div>
+</section>
+<section id="avantages">
+<div class="features">
+<div class="feature-card">
+<h3>Direkt vom Hersteller zum Fabrikpreis</h3>
+<p>Profitieren Sie von Preisen direkt ab Werk ohne Zwischenhändler.</p>
+</div>
+<div class="feature-card">
+<h3>Weltweiter Versand</h3>
+<p>Weltweiter Versand für all Ihre Bedürfnisse</p>
+</div>
+<div class="feature-card">
+<h3>Reaktionsschneller Kundendienst</h3>
+<p>Ein reaktionsschneller und jederzeit erreichbarer Kundendienst steht Ihnen zur Seite.</p>
+</div>
+<div class="feature-card">
+<h3>Sichere Zahlung</h3>
+<p>Sichere Zahlung per Kreditkarte mit maximalem Schutz</p>
+</div>
+</div>
+</section>
+<section class="stats-section">
+<h2 class="section-title">Unsere wichtigsten Kennzahlen</h2>
+<div class="stats-grid">
+<div class="stat-item">
+<div class="stat-number">1120+</div>
+<div class="stat-label">Verfügbare Produkte</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">110+</div>
+<div class="stat-label">Lieferland</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">98 %</div>
+<div class="stat-label">Kundenzufriedenheit</div>
+</div>
+<div class="stat-item">
+<div class="stat-number">24/7</div>
+<div class="stat-label">Kundendienst</div>
+</div>
+</div>
+</section>
+<section class="faq-section">
+<h2 class="section-title">Häufig gestellte Fragen</h2>
+<div class="faq-container">
+<div class="faq-item">
+<div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+<span>Wie lange sind die Lieferzeiten?</span>
+<span class="faq-icon">▼</span>
+</div>
+<div class="faq-answer">
+<p>Die Lieferzeiten variieren je nach Standort und Verkäufer. In der Regel dauert die Standardlieferung 15 bis 30 Werktage. Einige Verkäufer bieten gegen Aufpreis eine Expresslieferung (7–15 Tage) an. Die genauen Lieferzeiten können Sie vor Ihrer Bestellung auf der jeweiligen AliExpress-Produktseite einsehen.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+<span>Welche Zahlungsmethoden werden akzeptiert?</span>
+<span class="faq-icon">▼</span>
+</div>
+<div class="faq-answer">
+<p>AliExpress akzeptiert verschiedene sichere Zahlungsmethoden: Kreditkarten (Visa, Mastercard), PayPal, Banküberweisung und weitere, abhängig von Ihrem Land. Alle Zahlungen sind durch den AliExpress-Käuferschutz geschützt. Die Belastung Ihres Kontos erfolgt erst nach Versand Ihrer Bestellung.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+<span>Gibt es eine Garantie auf die Produkte?</span>
+<span class="faq-icon">▼</span>
+</div>
+<div class="faq-answer">
+<p>Ja, alle auf AliExpress verkauften Produkte sind durch die AliExpress-Käufergarantie abgedeckt. Diese Garantie deckt defekte Produkte, Produkte, die nicht der Beschreibung entsprechen, oder nicht gelieferte Produkte ab. Sie haben in der Regel 15 Tage nach Erhalt Zeit, um gegebenenfalls einen Streitfall zu eröffnen. Darüber hinaus bieten viele Verkäufer eigene Garantieverlängerungen (6 Monate, 1 Jahr usw.) an, die Sie auf der Produktseite finden.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+<span>Was soll ich tun, wenn es ein Problem mit meiner Bestellung gibt?</span>
+<span class="faq-icon">▼</span>
+</div>
+<div class="faq-answer">
+<p>Sollten Sie ein Problem haben (defektes Produkt, nicht erhalten, nicht konform), können Sie direkt über Ihr AliExpress-Konto im Bereich „Meine Bestellungen“ eine Streitigkeit eröffnen. Der AliExpress-Kundenservice unterstützt Sie bei der Lösung des Problems. Die meisten Streitfälle werden schnell und oft zu Ihren Gunsten gelöst, wenn Sie die erforderlichen Beweise (Fotos, Problembeschreibung) vorlegen.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+<span>Sind die Produkte authentisch und von guter Qualität?</span>
+<span class="faq-icon">▼</span>
+</div>
+<div class="faq-answer">
+<p>Wir wählen ausschließlich Qualitätsprodukte von verifizierten und positiv bewerteten Verkäufern auf AliExpress aus. Jedes Produkt wird mit Kundenrezensionen und -bewertungen angezeigt, sodass Sie die Qualität vor dem Kauf prüfen können. Wir empfehlen Ihnen, die Rezensionen zu lesen und die von Kunden geteilten Fotos anzusehen, um sicherzustellen, dass das Produkt Ihren Erwartungen entspricht.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="testimonials-section">
+<h2 class="section-title">Kundenrezensionen</h2>
+<div class="testimonials-grid">
+<div class="testimonial-card">
+<div class="testimonial-header">
+<img src="../images/testimonials/client1.webp" alt="Marie L." class="testimonial-avatar" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'30\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'Arial\' font-size=\'20\'%3EM%3C/text%3E%3C/svg%3E'">
+<div class="testimonial-info">
+<div class="testimonial-name">Marie L.</div>
+<div class="testimonial-stars">★★★★★</div>
+</div>
+</div>
+<p class="testimonial-text">Exzellenter Service! Ich habe eine Makita-Bohrmaschine bestellt und bin sehr zufrieden. Die Qualität ist hervorragend, die Lieferung erfolgte schnell und die Verpackung war einwandfrei. Das Gerät funktioniert genau wie beschrieben und ist in meiner Werkstatt unverzichtbar geworden. Ich kann es uneingeschränkt empfehlen.</p>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-header">
+<img src="../images/testimonials/client2.webp" alt="Jean P." class="testimonial-avatar" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'30\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'Arial\' font-size=\'20\'%3EJ%3C/text%3E%3C/svg%3E'">
+<div class="testimonial-info">
+<div class="testimonial-name">Jean P.</div>
+<div class="testimonial-stars">★★★★★</div>
+</div>
+</div>
+<p class="testimonial-text">Ausgezeichnetes Preis-Leistungs-Verhältnis. Ich habe einen Makita Winkelschleifer gekauft und alles entspricht der Beschreibung. Das Gerät ist leistungsstark, robust und bewältigt selbst harte Materialien mühelos. Die Lieferung erfolgte pünktlich und das Produkt hat meine Erwartungen übertroffen.</p>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-header">
+<img src="../images/testimonials/client3.webp" alt="Sophie M." class="testimonial-avatar" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'30\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'Arial\' font-size=\'20\'%3ES%3C/text%3E%3C/svg%3E'">
+<div class="testimonial-info">
+<div class="testimonial-name">Sophie M.</div>
+<div class="testimonial-stars">★★★★★</div>
+</div>
+</div>
+<p class="testimonial-text">Perfekt! Ich habe mehrere Makita-Werkzeuge für meine Werkstatt bestellt. Alle Produkte sind von sehr guter Qualität, die Preise sind wettbewerbsfähig und die Lieferung verlief reibungslos. Die Werkzeuge sind professionell und haben meine Arbeitseffizienz deutlich gesteigert. Ich werde wieder bestellen!</p>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-header">
+<img src="../images/testimonials/client4.webp" alt="Pierre D." class="testimonial-avatar" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'30\' fill=\'%23e0e0e0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'Arial\' font-size=\'20\'%3EP%3C/text%3E%3C/svg%3E'">
+<div class="testimonial-info">
+<div class="testimonial-name">Pierre D.</div>
+<div class="testimonial-stars">★★★★★</div>
+</div>
+</div>
+<p class="testimonial-text">Schneller Kundenservice und hochwertige Produkte. Ich hatte eine kurze Frage zur Kompatibilität eines Makita-Akkus und erhielt umgehend eine Antwort. Die Werkzeuge entsprechen exakt den Fotos und Beschreibungen. Die Verarbeitungsqualität ist hervorragend und sie funktionieren genau wie erwartet. Ich bin sehr zufrieden mit meinem Kauf!</p>
+</div>
+
+</div>
+</section>
+<footer>
+<div class="footer-links">
+<a href="./">Startseite</a>
+<a href="sitemap.xml">Sitemap</a>
+<a href="page_html/legal/uber-uns.html">Über uns</a>
+<a href="page_html/legal/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+<a href="page_html/legal/rechtlicher-hinweis.html">Rechtlicher Hinweis</a>
+<a href="page_html/legal/datenschutzrichtlinie.html">Datenschutzrichtlinie</a>
+</div>
+<p>Kontaktieren Sie uns: <a href="mailto:contact@evanstudio.net">contact@evanstudio.net</a></p>
+<p>© 2024 AliExpress Affiliate. Alle Rechte vorbehalten.</p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+const menuToggle=document.getElementById('menu-toggle');
+const menu=document.getElementById('menu');
+if(menuToggle&&menu){
+menuToggle.addEventListener('click',()=>{menu.classList.toggle('active')});
+}
+fetch('config.json').then(r=>r.json()).then(config=>{
+const site=config.site||{};
+if(site.title)document.title=site.title;
+const metaDesc=document.querySelector('meta[name="description"]');
+if(site.description&&metaDesc)metaDesc.content=site.description;
+if(site.hero){
+const heroTitle=document.getElementById('hero-title');
+if(heroTitle&&site.hero.title)heroTitle.textContent=site.hero.title;
+const heroSubtitle=document.getElementById('hero-subtitle');
+if(heroSubtitle&&site.hero.subtitle)heroSubtitle.textContent=site.hero.subtitle;
+const heroButton=document.getElementById('hero-button');
+if(heroButton&&site.hero.button)heroButton.textContent=site.hero.button;
+}
+}).catch(()=>{});
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

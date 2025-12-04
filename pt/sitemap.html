@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Plan du site - Navigation rapide vers toutes les pages">
+<title>Plan du Site - Affiliation AliExpress</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6;color:#333;background:#fff}
+header{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.1);position:sticky;top:0;z-index:1000}
+nav{max-width:1200px;margin:0 auto;padding:1.5rem 1rem;display:flex;justify-content:center;align-items:center;gap:2rem;position:relative}
+.logo{font-size:1.5rem;font-weight:700;color:#e60012;display:flex;align-items:center;gap:.5rem;flex-shrink:0;position:absolute;left:1rem;min-width:200px;text-decoration:none}
+.logo img{height:60px;width:auto;object-fit:contain;display:block}
+.menu{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap;margin:0 auto}
+.menu a{color:#333;text-decoration:none;font-weight:500;transition:color .2s;white-space:nowrap}
+.menu a:hover{color:#e60012}
+.menu-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#333}
+@media (max-width:768px){
+.menu-toggle{display:block}
+.menu{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1rem;box-shadow:0 4px 6px rgba(0,0,0,.1);display:none;gap:0}
+.menu.active{display:flex}
+.menu a{padding:.75rem 1rem;border-bottom:1px solid #f0f0f0}
+.menu a:last-child{border-bottom:none}
+.logo img{height:45px}
+nav{padding:.75rem}
+}
+section{max-width:800px;margin:0 auto;padding:3rem 1rem}
+h1{font-size:2rem;margin-bottom:2rem;color:#333}
+.sitemap-section{margin-bottom:2rem}
+.sitemap-section h2{font-size:1.5rem;margin-bottom:1rem;color:#e60012}
+.sitemap-section ul{list-style:none}
+.sitemap-section li{margin-bottom:.5rem}
+.sitemap-section a{color:#333;text-decoration:none;transition:color .2s}
+.sitemap-section a:hover{color:#e60012}
+footer{background:#f5f5f5;padding:2rem 1rem;margin-top:4rem;text-align:center;color:#666}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-bottom:1rem}
+.footer-links a{color:#666;text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#e60012}
+@media (max-width:768px){
+section{padding:2rem 1rem}
+h1{font-size:1.5rem}
+.sitemap-section h2{font-size:1.3rem}
+.footer-links{flex-direction:column;gap:1rem}
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="index.html" class="logo" id="logo"></a>
+<ul class="menu" id="menu">
+<li><a href="index.html">Accueil</a></li>
+<li><a href="tentes.html">Tentes</a></li>
+<li><a href="mobilier.html">Mobilier</a></li>
+<li><a href="couchage.html">Couchage</a></li>
+<li><a href="cuisine.html">Cuisine</a></li>
+<li><a href="vetement.html">Vêtement</a></li>
+</ul>
+<button class="menu-toggle" id="menu-toggle" aria-label="Menu">☰</button>
+</nav>
+</header>
+<section>
+<h1>Plan du Site</h1>
+<div class="sitemap-section">
+<h2>Pages Principales</h2>
+<ul>
+<li><a href="index.html">Accueil</a></li>
+</ul>
+</div>
+<div class="sitemap-section">
+<h2>Catégories de Produits</h2>
+<ul>
+<li><a href="tentes.html">Tentes</a></li>
+<li><a href="mobilier.html">Mobilier</a></li>
+<li><a href="couchage.html">Couchage</a></li>
+<li><a href="cuisine.html">Cuisine</a></li>
+<li><a href="vetement.html">Vêtement</a></li>
+</ul>
+</div>
+<div class="sitemap-section">
+<h2>Informations Légales</h2>
+<ul>
+<li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+<li><a href="mentions-legales.html">Mentions légales</a></li>
+<li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+</ul>
+</div>
+<div class="sitemap-section">
+<h2>Autres Pages</h2>
+<ul>
+<li><a href="sitemap.html">Plan du site</a></li>
+</ul>
+</div>
+</section>
+<footer>
+<div class="footer-links">
+<a href="index.html">Accueil</a>
+<a href="sitemap.html">Plan du site</a>
+<a href="conditions-utilisation.html">Conditions d'utilisation</a>
+<a href="mentions-legales.html">Mentions légales</a>
+<a href="politique-confidentialite.html">Politique de confidentialité</a>
+</div>
+<p>Contactez-nous : <a href="mailto:contact@naturehike-shop.com">contact@naturehike-shop.com</a></p>
+<p>&copy; 2024 AliExpress Affiliate. Tous droits réservés.</p>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded',async()=>{
+const menuToggle=document.getElementById('menu-toggle');
+const menu=document.getElementById('menu');
+if(menuToggle&&menu){
+menuToggle.addEventListener('click',()=>{menu.classList.toggle('active')});
+}
+let config={};
+try{
+const response=await fetch('config.json');
+if(response.ok)config=await response.json();
+}catch(e){}
+const site=config.site||{};
+const logoEl=document.getElementById('logo');
+if(logoEl&&site.logo){
+if(site.logo.type==='image'&&site.logo.image){
+const img=document.createElement('img');
+img.src=site.logo.image;
+img.alt=site.title||'Logo';
+img.loading='eager';
+logoEl.appendChild(img);
+}else if(site.logo.text){
+logoEl.textContent=site.logo.text;
+}
+}
+});
+</script>
+</body>
+</html>
+

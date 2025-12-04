@@ -1,0 +1,54 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "slug": "test1",
+      "name": "Test1",
+      "menu_order": 1,
+      "image": "images/categories/tentes.webp",
+      "page": "page_html/categories/test1.html",
+      "meta": {
+        "title": "Tentes - Affiliation AliExpress",
+        "description": "Découvrez notre sélection de tentes de qualité pour vos aventures en plein air."
+      },
+      "content": "Les tentes sont l'élément essentiel de tout équipement de camping et de randonnée. Que vous partiez pour une escapade en montagne, une aventure en forêt ou un séjour au bord de la mer, une tente de qualité vous offrira l'abri et le confort nécessaires pour profiter pleinement de la nature. Notre sélection de tentes sur AliExpress comprend une variété de modèles adaptés à tous les besoins et budgets. Des tentes ultra-légères pour les randonneurs exigeants aux tentes familiales spacieuses, vous trouverez forcément le modèle qui correspond à vos attentes. Les tentes modernes sont conçues avec des matériaux résistants aux intempéries, offrant une protection optimale contre la pluie, le vent et les UV. Elles sont également faciles à monter, avec des systèmes de montage rapide qui vous permettront d'installer votre abri en quelques minutes seulement. Que vous recherchiez une tente 2 places pour les couples, une tente 4 places pour les familles ou une tente plus grande pour les groupes, notre catalogue vous propose les meilleures options disponibles sur AliExpress. Tous nos produits sont soigneusement sélectionnés pour leur qualité, leur durabilité et leur excellent rapport qualité-prix."
+    },
+    {
+      "id": 2,
+      "slug": "mobilier",
+      "name": "Mobilier",
+      "menu_order": 2,
+      "image": "images/categories/mobilier.webp",
+      "page": "page_html/categories/mobilier.html",
+      "meta": {
+        "title": "Mobilier - Affiliation AliExpress",
+        "description": "Découvrez notre sélection de mobilier de camping et plein air."
+      },
+      "content": "Le mobilier de camping transforme votre espace extérieur en un véritable salon en plein air. Tables pliantes, chaises confortables, bancs et tabourets : tous ces éléments sont essentiels pour créer une ambiance conviviale autour du feu de camp ou pour profiter d'un repas en famille dans la nature. Notre sélection de mobilier de camping sur AliExpress comprend des produits conçus pour être légers, compacts et faciles à transporter, tout en offrant un confort optimal. Les tables pliantes sont parfaites pour les repas, les jeux de société ou simplement pour poser vos affaires. Elles sont généralement en aluminium ou en acier, garantissant légèreté et résistance. Les chaises de camping modernes offrent un excellent soutien dorsal et sont souvent équipées de poches de rangement intégrées. Certains modèles sont même dotés de repose-tête et de positions inclinables pour un confort maximal. Que vous préfériez les chaises pliantes classiques, les chaises suspendues ou les tabourets compacts, vous trouverez dans notre catalogue le mobilier qui correspond à votre style de camping. Tous nos produits sont sélectionnés pour leur qualité, leur praticité et leur excellent rapport qualité-prix."
+    },
+    {
+      "id": 3,
+      "slug": "couchage",
+      "name": "Couchage",
+      "menu_order": 3,
+      "image": "images/categories/couchage.webp",
+      "page": "page_html/categories/couchage.html",
+      "meta": {
+        "title": "Couchage - Affiliation AliExpress",
+        "description": "Découvrez notre sélection de couchage pour un repos confortable en camping."
+      },
+      "content": "Un bon sommeil est essentiel pour profiter pleinement de vos aventures en plein air. Le couchage de camping doit être confortable, isolant et facile à transporter. Notre sélection sur AliExpress comprend des matelas pneumatiques, des matelas autogonflants, des tapis de sol et des oreillers de camping, tous conçus pour vous offrir le meilleur confort possible même en pleine nature. Les matelas autogonflants sont particulièrement appréciés pour leur facilité d'utilisation : il suffit d'ouvrir la valve et le matelas se gonfle automatiquement. Ils offrent une excellente isolation thermique et un confort remarquable. Les matelas pneumatiques sont quant à eux très légers et compacts, parfaits pour les randonneurs qui privilégient le poids minimal. Les tapis de sol isolants protègent du froid et de l'humidité, tandis que les oreillers de camping apportent le confort supplémentaire nécessaire pour une nuit reposante. Que vous recherchiez un matelas épais pour un confort maximal ou un tapis ultra-léger pour la randonnée, notre catalogue vous propose les meilleures options disponibles. Tous nos produits sont sélectionnés pour leur qualité, leur durabilité et leur excellent rapport qualité-prix."
+    }
+  ],
+  "image_structure": {
+    "type": "by_product_id",
+    "base_path": "images/products",
+    "description": "Les images produits sont organisées par product_id uniquement: images/products/[product_id]/"
+  },
+  "notes": {
+    "category_id_source": "CSV all_products.csv colonne 'category_id'",
+    "mapping_usage": "Ce fichier fait le lien entre category_id (CSV) et slug/name (site)",
+    "flexibility": "Pour changer de site, modifiez uniquement ce fichier (noms, images, meta)"
+  }
+}
+
