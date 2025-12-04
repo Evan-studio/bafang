@@ -182,7 +182,7 @@ def generate_language_sitemap(lang_dir, lang_code):
     
     return '\n'.join(sitemap_content)
 
-def generate_sitemap_index(lang_dirs):
+def generate_sitemap_index(lang_codes):
     """Génère le sitemap index qui référence tous les sitemaps de langue."""
     base_domain = get_base_domain()
     today = datetime.now().strftime('%Y-%m-%d')
@@ -190,8 +190,10 @@ def generate_sitemap_index(lang_dirs):
     sitemap_content = ['<?xml version="1.0" encoding="UTF-8"?>']
     sitemap_content.append('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
     
-    for lang_dir in lang_dirs:
-        lang_code = lang_dir.name.lower()
+    # Trier les codes de langue pour avoir 'en' en premier
+    sorted_lang_codes = sorted(lang_codes, key=lambda x: (x != 'en', x))
+    
+    for lang_code in sorted_lang_codes:
         sitemap_url = f'{base_domain}/sitemap-{lang_code}.xml'
         sitemap_content.append('  <sitemap>')
         sitemap_content.append(f'    <loc>{sitemap_url}</loc>')
@@ -228,12 +230,91 @@ def main():
     print(f"🌐 Domaine détecté: {base_domain}")
     print()
     
-    # 3. Générer un sitemap pour chaque langue
-    print("📝 Génération des sitemaps par langue...")
-    print("-" * 70)
-    
+    # 3. Générer un sitemap pour la racine (en) si elle existe
     generated_sitemaps = []
+    root_index = BASE_DIR / 'index.html'
+    root_translations = BASE_DIR / 'translations.csv'
     
+    if root_index.exists() and root_translations.exists():
+        print("📝 Génération des sitemaps par langue...")
+        print("-" * 70)
+        print(f"\n📄 Génération de sitemap-en.xml (racine)...")
+        
+        # Générer le sitemap pour la racine (en)
+        root_pages = []
+        base_domain = get_base_domain()
+        
+        # Index de la racine
+        root_pages.append({
+            'url': f'{base_domain}/',
+            'lastmod': get_lastmod_date(root_index),
+            'priority': '1.0',
+            'changefreq': 'daily'
+        })
+        
+        # Pages catégories de la racine
+        root_categories_dir = BASE_DIR / 'page_html' / 'categories'
+        if root_categories_dir.exists():
+            for html_file in sorted(root_categories_dir.glob('*.html')):
+                if html_file.name != 'index.html':
+                    root_pages.append({
+                        'url': f'{base_domain}/page_html/categories/{html_file.name}',
+                        'lastmod': get_lastmod_date(html_file),
+                        'priority': '0.8',
+                        'changefreq': 'weekly'
+                    })
+        
+        # Pages produits de la racine
+        root_products_dir = BASE_DIR / 'page_html' / 'products'
+        if root_products_dir.exists():
+            for html_file in sorted(root_products_dir.glob('produit-*.html')):
+                root_pages.append({
+                    'url': f'{base_domain}/page_html/products/{html_file.name}',
+                    'lastmod': get_lastmod_date(html_file),
+                    'priority': '0.7',
+                    'changefreq': 'monthly'
+                })
+        
+        # Pages légales de la racine
+        root_legal_dir = BASE_DIR / 'page_html' / 'legal'
+        if root_legal_dir.exists():
+            for html_file in sorted(root_legal_dir.glob('*.html')):
+                root_pages.append({
+                    'url': f'{base_domain}/page_html/legal/{html_file.name}',
+                    'lastmod': get_lastmod_date(html_file),
+                    'priority': '0.5',
+                    'changefreq': 'monthly'
+                })
+        
+        if root_pages:
+            sitemap_content = ['<?xml version="1.0" encoding="UTF-8"?>']
+            sitemap_content.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+            
+            for page in root_pages:
+                sitemap_content.append('  <url>')
+                sitemap_content.append(f'    <loc>{page["url"]}</loc>')
+                sitemap_content.append(f'    <lastmod>{page["lastmod"]}</lastmod>')
+                sitemap_content.append(f'    <changefreq>{page["changefreq"]}</changefreq>')
+                sitemap_content.append(f'    <priority>{page["priority"]}</priority>')
+                sitemap_content.append('  </url>')
+            
+            sitemap_content.append('</urlset>')
+            sitemap_en_content = '\n'.join(sitemap_content)
+            
+            sitemap_file = BASE_DIR / 'sitemap-en.xml'
+            sitemap_file.write_text(sitemap_en_content, encoding='utf-8')
+            
+            page_count = sitemap_en_content.count('<url>')
+            print(f"  ✅ {page_count} page(s) ajoutée(s)")
+            print(f"  📁 Fichier: {sitemap_file.name} (racine)")
+            generated_sitemaps.append('en')
+        else:
+            print(f"  ⚠️  Aucune page trouvée pour la racine")
+    else:
+        print("📝 Génération des sitemaps par langue...")
+        print("-" * 70)
+    
+    # 4. Générer un sitemap pour chaque langue
     for lang_dir in lang_dirs:
         lang_code = lang_dir.name.lower()
         print(f"\n📄 Génération de sitemap-{lang_code}.xml...")
@@ -256,9 +337,9 @@ def main():
     print()
     print("-" * 70)
     
-    # 4. Générer le sitemap index à la racine
+    # 5. Générer le sitemap index à la racine
     print("\n📋 Génération du sitemap index (racine)...")
-    sitemap_index_content = generate_sitemap_index(lang_dirs)
+    sitemap_index_content = generate_sitemap_index(generated_sitemaps)
     
     sitemap_index_file = BASE_DIR / 'sitemap.xml'
     sitemap_index_file.write_text(sitemap_index_content, encoding='utf-8')
