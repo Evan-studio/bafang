@@ -123,35 +123,41 @@ def find_html_pages(lang_dir, lang_code):
             'changefreq': 'daily'
         })
     
-    # Pages catégories
+    # Pages catégories (sans extension .html car Cloudflare Pages les sert sans)
     categories_dir = lang_dir / 'page_html' / 'categories'
     if categories_dir.exists():
         for html_file in sorted(categories_dir.glob('*.html')):
             if html_file.name != 'index.html':  # Exclure les index.html dans les catégories
+                # Enlever l'extension .html pour l'URL
+                url_name = html_file.stem
                 pages.append({
-                    'url': f'{base_domain}/{lang_code}/page_html/categories/{html_file.name}',
+                    'url': f'{base_domain}/{lang_code}/page_html/categories/{url_name}',
                     'lastmod': get_lastmod_date(html_file),
                     'priority': '0.8',
                     'changefreq': 'weekly'
                 })
     
-    # Pages produits
+    # Pages produits (sans extension .html)
     products_dir = lang_dir / 'page_html' / 'products'
     if products_dir.exists():
         for html_file in sorted(products_dir.glob('produit-*.html')):
+            # Enlever l'extension .html pour l'URL
+            url_name = html_file.stem
             pages.append({
-                'url': f'{base_domain}/{lang_code}/page_html/products/{html_file.name}',
+                'url': f'{base_domain}/{lang_code}/page_html/products/{url_name}',
                 'lastmod': get_lastmod_date(html_file),
                 'priority': '0.7',
                 'changefreq': 'monthly'
             })
     
-    # Pages légales
+    # Pages légales (sans extension .html)
     legal_dir = lang_dir / 'page_html' / 'legal'
     if legal_dir.exists():
         for html_file in sorted(legal_dir.glob('*.html')):
+            # Enlever l'extension .html pour l'URL
+            url_name = html_file.stem
             pages.append({
-                'url': f'{base_domain}/{lang_code}/page_html/legal/{html_file.name}',
+                'url': f'{base_domain}/{lang_code}/page_html/legal/{url_name}',
                 'lastmod': get_lastmod_date(html_file),
                 'priority': '0.5',
                 'changefreq': 'monthly'
@@ -287,35 +293,41 @@ def main():
             'changefreq': 'daily'
         })
         
-        # Pages catégories de la racine
+        # Pages catégories de la racine (sans extension .html)
         root_categories_dir = BASE_DIR / 'page_html' / 'categories'
         if root_categories_dir.exists():
             for html_file in sorted(root_categories_dir.glob('*.html')):
                 if html_file.name != 'index.html':
+                    # Enlever l'extension .html pour l'URL
+                    url_name = html_file.stem
                     root_pages.append({
-                        'url': f'{base_domain}/page_html/categories/{html_file.name}',
+                        'url': f'{base_domain}/page_html/categories/{url_name}',
                         'lastmod': get_lastmod_date(html_file),
                         'priority': '0.8',
                         'changefreq': 'weekly'
                     })
         
-        # Pages produits de la racine
+        # Pages produits de la racine (sans extension .html)
         root_products_dir = BASE_DIR / 'page_html' / 'products'
         if root_products_dir.exists():
             for html_file in sorted(root_products_dir.glob('produit-*.html')):
+                # Enlever l'extension .html pour l'URL
+                url_name = html_file.stem
                 root_pages.append({
-                    'url': f'{base_domain}/page_html/products/{html_file.name}',
+                    'url': f'{base_domain}/page_html/products/{url_name}',
                     'lastmod': get_lastmod_date(html_file),
                     'priority': '0.7',
                     'changefreq': 'monthly'
                 })
         
-        # Pages légales de la racine
+        # Pages légales de la racine (sans extension .html)
         root_legal_dir = BASE_DIR / 'page_html' / 'legal'
         if root_legal_dir.exists():
             for html_file in sorted(root_legal_dir.glob('*.html')):
+                # Enlever l'extension .html pour l'URL
+                url_name = html_file.stem
                 root_pages.append({
-                    'url': f'{base_domain}/page_html/legal/{html_file.name}',
+                    'url': f'{base_domain}/page_html/legal/{url_name}',
                     'lastmod': get_lastmod_date(html_file),
                     'priority': '0.5',
                     'changefreq': 'monthly'
@@ -403,8 +415,10 @@ def main():
         if root_categories_dir.exists():
             for html_file in sorted(root_categories_dir.glob('*.html')):
                 if html_file.name != 'index.html':
+                    # Enlever l'extension .html pour l'URL
+                    url_name = html_file.stem
                     all_pages.append({
-                        'url': f'{base_domain}/page_html/categories/{html_file.name}',
+                        'url': f'{base_domain}/page_html/categories/{url_name}',
                         'lastmod': get_lastmod_date(html_file),
                         'priority': '0.8',
                         'changefreq': 'weekly'
@@ -413,8 +427,10 @@ def main():
         root_products_dir = BASE_DIR / 'page_html' / 'products'
         if root_products_dir.exists():
             for html_file in sorted(root_products_dir.glob('produit-*.html')):
+                # Enlever l'extension .html pour l'URL
+                url_name = html_file.stem
                 all_pages.append({
-                    'url': f'{base_domain}/page_html/products/{html_file.name}',
+                    'url': f'{base_domain}/page_html/products/{url_name}',
                     'lastmod': get_lastmod_date(html_file),
                     'priority': '0.7',
                     'changefreq': 'monthly'
