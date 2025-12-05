@@ -204,11 +204,46 @@ def generate_sitemap_index(lang_codes):
     
     return '\n'.join(sitemap_content)
 
+def cleanup_old_sitemaps():
+    """Supprime tous les anciens fichiers sitemap avant de générer les nouveaux."""
+    deleted_count = 0
+    
+    # Supprimer les sitemaps à la racine
+    for sitemap_file in BASE_DIR.glob('sitemap*.xml'):
+        try:
+            sitemap_file.unlink()
+            deleted_count += 1
+            print(f"  🗑️  Supprimé: {sitemap_file.name}")
+        except Exception as e:
+            print(f"  ⚠️  Erreur lors de la suppression de {sitemap_file.name}: {e}")
+    
+    # Supprimer les sitemaps dans les dossiers de langue
+    for item in BASE_DIR.iterdir():
+        if item.is_dir() and not item.name.startswith('.') and item.name not in EXCLUDED_DIRS:
+            for sitemap_file in item.glob('sitemap*.xml'):
+                try:
+                    sitemap_file.unlink()
+                    deleted_count += 1
+                    print(f"  🗑️  Supprimé: {item.name}/{sitemap_file.name}")
+                except Exception as e:
+                    print(f"  ⚠️  Erreur lors de la suppression de {item.name}/{sitemap_file.name}: {e}")
+    
+    return deleted_count
+
 def main():
     """Fonction principale."""
     print("=" * 70)
     print("🗺️  GÉNÉRATION DES SITEMAPS MULTILINGUES")
     print("=" * 70)
+    print()
+    
+    # 0. Nettoyer les anciens sitemaps
+    print("🧹 Nettoyage des anciens sitemaps...")
+    deleted_count = cleanup_old_sitemaps()
+    if deleted_count > 0:
+        print(f"  ✅ {deleted_count} ancien(s) sitemap(s) supprimé(s)")
+    else:
+        print("  ℹ️  Aucun ancien sitemap trouvé")
     print()
     
     # 1. Détecter tous les dossiers de langue
