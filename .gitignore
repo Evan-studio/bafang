@@ -19,5 +19,18 @@ __pycache__/
 .vscode/
 .idea/
 
+# Exclure les vidéos (trop volumineuses pour GitHub/Cloudflare)
+images/products/**/*.mp4
+images/products/**/*.webm
+images/products/**/*.mov
+images/products/**/*.avi
+images/products/**/*.mkv
+images/video/**
+*.mp4
+*.webm
+*.mov
+*.avi
+*.mkv
+
 
 
