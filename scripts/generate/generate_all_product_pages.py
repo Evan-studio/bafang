@@ -310,18 +310,38 @@ def generate_product_page_html(product, translations):
         flags=re.DOTALL
     )
     
+    # Récupérer l'URL YouTube si elle existe
+    youtube_url = product.get('youtube_url', '').strip() if product.get('youtube_url') else ''
+    has_youtube = bool(youtube_url)
+    
+    # Extraire l'ID YouTube depuis l'URL
+    youtube_id = ''
+    if has_youtube:
+        match = re.search(r'(?:youtube\.com/watch\?v=|youtu\.be/)([^&\s]+)', youtube_url)
+        if match:
+            youtube_id = match.group(1)
+    
     # 5. Générer le contenu du produit (remplacer le div product-container)
     product_content = f'''<div class="product-header">
 <div class="product-images">
 <img src="{main_image}" alt="{escape_html_attr(title)}" class="main-image" id="main-image">
 '''
     
-    # Ajouter les miniatures si plusieurs images
-    if len(images) > 1:
+    # Ajouter la vidéo YouTube si elle existe
+    if has_youtube and youtube_id:
+        product_content += f'<iframe id="main-video" class="main-video" style="display:none;width:100%;aspect-ratio:1;border:none;border-radius:8px;" src="https://www.youtube.com/embed/{youtube_id}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>\n'
+    
+    # Ajouter les miniatures si plusieurs images ou vidéo YouTube
+    if len(images) > 1 or has_youtube:
         product_content += '<div class="thumbnails">\n'
         for idx, img in enumerate(images):
             active_class = 'active' if idx == 0 else ''
             product_content += f'<img src="{img}" alt="Image {idx+1}" class="thumbnail {active_class}" onclick="showImage(\'{img}\',event)">\n'
+        
+        # Ajouter la miniature vidéo si YouTube existe
+        if has_youtube:
+            product_content += f'<div class="thumbnail-video" onclick="showVideo(event)"><img src="{main_image}" alt="Vidéo"></div>\n'
+        
         product_content += '</div>\n'
     
     product_content += '</div>\n'
@@ -389,12 +409,32 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.showImage = function(imgSrc, evt) {
         const mainImg = document.getElementById('main-image');
+        const mainVid = document.getElementById('main-video');
         if (mainImg) {
             mainImg.src = imgSrc;
+            mainImg.style.display = 'block';
         }
-        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+        if (mainVid) {
+            mainVid.style.display = 'none';
+        }
+        document.querySelectorAll('.thumbnail,.thumbnail-video').forEach(t => t.classList.remove('active'));
         if (evt && evt.target) {
-            evt.target.closest('.thumbnail')?.classList.add('active');
+            evt.target.closest('.thumbnail,.thumbnail-video')?.classList.add('active');
+        }
+    };
+    
+    window.showVideo = function(evt) {
+        const mainImg = document.getElementById('main-image');
+        const mainVid = document.getElementById('main-video');
+        if (mainImg) {
+            mainImg.style.display = 'none';
+        }
+        if (mainVid) {
+            mainVid.style.display = 'block';
+        }
+        document.querySelectorAll('.thumbnail,.thumbnail-video').forEach(t => t.classList.remove('active'));
+        if (evt && evt.target) {
+            evt.target.closest('.thumbnail-video')?.classList.add('active');
         }
     };
 });
@@ -457,9 +497,13 @@ def load_products_from_csv():
                 name = row.get(name_col, '').strip() if name_col else ''
                 title = name or titre or row.get('name', '').strip() or row.get('titre', '').strip()
                 
+                # Récupérer youtube_url
+                youtube_url = row.get('youtube_url', '').strip() if 'youtube_url' in fieldnames else ''
+                
                 products.append({
                     'id': product_id,
                     'title': title,
+                    'youtube_url': youtube_url,
                     'name': name or row.get('name', '').strip(),
                     'affiliate_link': affiliate_link,
                     'affiliate_links': affiliate_link,

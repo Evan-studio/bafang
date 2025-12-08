@@ -181,14 +181,23 @@ metaKeywords.content=(product.meta_title||product.title||'produit')+', AliExpres
 const images=product.images&&product.images.length>0?product.images:(product.image?[product.image]:[]);
 const mainImage=images[0]||product.image||'';
 const currentProductId=String(product.id);
-// Vérifier si une vidéo existe pour ce produit
-const hasVideo=product.video&&product.video.trim()!=='';
-const videoUrl=product.video||'';
+// Vérifier si une vidéo existe pour ce produit (locale ou YouTube)
+const hasLocalVideo=product.video&&product.video.trim()!=='';
+const localVideoUrl=product.video||'';
+const hasYoutubeVideo=product.youtube_url&&product.youtube_url.trim()!=='';
+const youtubeUrl=product.youtube_url||'';
+const hasVideo=hasLocalVideo||hasYoutubeVideo;
 let html='<div class="product-header">';
 html+='<div class="product-images">';
 html+=`<img src="${mainImage}" alt="${product.title||product.name}" class="main-image" id="main-image">`;
-if(hasVideo&&videoUrl){
-html+=`<video id="main-video" class="main-video" controls preload="none" poster="${mainImage}"><source src="${videoUrl}" type="video/mp4">Votre navigateur ne supporte pas la vidéo.</video>`;
+if(hasYoutubeVideo&&youtubeUrl){
+// Extraire l'ID de la vidéo YouTube depuis l'URL
+const youtubeId=youtubeUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)?.[1]||'';
+if(youtubeId){
+html+=`<iframe id="main-video" class="main-video" style="display:none;width:100%;aspect-ratio:1;border:none;border-radius:8px;" src="https://www.youtube.com/embed/${youtubeId}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>`;
+}
+}else if(hasLocalVideo&&localVideoUrl){
+html+=`<video id="main-video" class="main-video" controls preload="none" poster="${mainImage}"><source src="${localVideoUrl}" type="video/mp4">Votre navigateur ne supporte pas la vidéo.</video>`;
 }
 if(images.length>1||hasVideo){
 html+='<div class="thumbnails">';
@@ -250,8 +259,13 @@ const mainVid=document.getElementById('main-video');
 if(mainImg)mainImg.style.display='none';
 if(mainVid){
 mainVid.style.display='block';
+// Si c'est une iframe YouTube, pas besoin de load/play
+if(mainVid.tagName==='IFRAME'){
+// YouTube iframe se charge automatiquement
+}else{
 mainVid.load();
 mainVid.play().catch(e=>console.log('Autoplay bloqué:',e));
+}
 }
 document.querySelectorAll('.thumbnail,.thumbnail-video').forEach(t=>t.classList.remove('active'));
 if(evt&&evt.target)evt.target.closest('.thumbnail-video')?.classList.add('active');

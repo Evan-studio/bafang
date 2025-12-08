@@ -683,6 +683,54 @@ if __name__ == '__main__':
     script_path.chmod(0o755)  # Rendre exécutable
     print(f"  ✅ Script generate_all_{target_lang_code}.py créé")
 
+def create_upload_youtube_folder(lang_dir, lang_code):
+    """Crée le dossier upload youtube pour une langue avec les fichiers nécessaires."""
+    print(f"\n📹 Création du dossier upload youtube pour {lang_code}...")
+    
+    upload_dir = lang_dir / 'upload youtube'
+    upload_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Copier les fichiers de credentials depuis le dossier principal
+    source_upload_dir = BASE_DIR / 'upload youtube'
+    
+    files_to_copy = [
+        'client_secret_938787798816-u7frdh82p7pckpj8hodtr3i1ss3fcjfu.apps.googleusercontent.com.json',
+    ]
+    
+    for file_name in files_to_copy:
+        source_file = source_upload_dir / file_name
+        if source_file.exists():
+            target_file = upload_dir / file_name
+            shutil.copy2(source_file, target_file)
+            print(f"  ✅ {file_name} copié")
+        else:
+            print(f"  ⚠️  {file_name} non trouvé dans le dossier source")
+    
+    # Créer un script helper pour lancer l'upload depuis ce dossier
+    helper_script = upload_dir / 'upload_videos.py'
+    helper_content = f'''#!/usr/bin/env python3
+"""
+Script helper pour lancer l'upload YouTube depuis le dossier {lang_code}.
+Ce script appelle le script principal auto_upload_multilingual.py
+"""
+import sys
+from pathlib import Path
+
+# Chemin vers le script principal
+ROOT_DIR = Path(__file__).parent.parent.parent
+MAIN_SCRIPT = ROOT_DIR / 'upload youtube' / 'auto_upload_multilingual.py'
+
+if __name__ == "__main__":
+    import subprocess
+    subprocess.run([sys.executable, str(MAIN_SCRIPT)])
+'''
+    helper_script.write_text(helper_content, encoding='utf-8')
+    helper_script.chmod(0o755)
+    print(f"  ✅ Script helper upload_videos.py créé")
+    
+    print(f"  ✅ Dossier upload youtube créé pour {lang_code}")
+    return upload_dir
+
 def main():
     """Fonction principale."""
     print("\n" + "=" * 70)
@@ -737,6 +785,9 @@ def main():
     
     # 5. Créer le script maître
     create_generate_script(lang_dir, target_lang_code)
+    
+    # 6. Créer le dossier upload youtube pour cette langue
+    create_upload_youtube_folder(lang_dir, target_lang_code)
     
     print("\n" + "=" * 70)
     print("✅ CRÉATION TERMINÉE!")
