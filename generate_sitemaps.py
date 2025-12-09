@@ -351,9 +351,13 @@ def main():
             sitemap_file = BASE_DIR / 'sitemap-en.xml'
             sitemap_file.write_text(sitemap_en_content, encoding='utf-8')
             
+            # Note: Le sitemap.xml à la racine sera créé plus tard comme sitemap index
+            # qui référence tous les sitemaps de langue (c'est mieux pour Google)
+            
             page_count = sitemap_en_content.count('<url>')
             print(f"  ✅ {page_count} page(s) ajoutée(s)")
             print(f"  📁 Fichier: {sitemap_file.name} (racine)")
+            print(f"  💡 Le sitemap.xml à la racine sera le sitemap index (généré plus tard)")
             generated_sitemaps.append('en')
         else:
             print(f"  ⚠️  Aucune page trouvée pour la racine")
@@ -373,10 +377,15 @@ def main():
             sitemap_file = BASE_DIR / f'sitemap-{lang_code}.xml'
             sitemap_file.write_text(sitemap_content, encoding='utf-8')
             
+            # Créer aussi un sitemap.xml dans le dossier de langue pour le footer
+            lang_sitemap_file = lang_dir / 'sitemap.xml'
+            lang_sitemap_file.write_text(sitemap_content, encoding='utf-8')
+            
             # Compter les pages
             page_count = sitemap_content.count('<url>')
             print(f"  ✅ {page_count} page(s) ajoutée(s)")
             print(f"  📁 Fichier: {sitemap_file.name} (racine)")
+            print(f"  📁 Fichier: {lang_code}/sitemap.xml (pour le footer)")
             generated_sitemaps.append(lang_code)
         else:
             print(f"  ⚠️  Aucune page trouvée, sitemap non généré")

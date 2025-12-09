@@ -1,0 +1,56 @@
+/* 
+ * Fichier CSS personnalisé pour modifier rapidement les couleurs et cacher des blocs
+ * Ce fichier est chargé après les styles inline, donc il peut surcharger les styles par défaut
+ */
+
+/* ============================================
+   MODIFICATIONS DE COULEURS
+   ============================================ */
+
+/* Couleur principale (rouge par défaut: #e60012) */
+/*
+.logo {
+    color: #votre-couleur !important;
+}
+
+.menu a:hover {
+    color: #votre-couleur !important;
+}
+
+.cta-button:hover {
+    color: #votre-couleur !important;
+    border-color: #votre-couleur !important;
+}
+*/
+
+/* ============================================
+   CACHER DES BLOCS
+   ============================================ */
+
+/* Exemples pour cacher des sections :
+   
+   Cacher la section hero :
+   .hero-section { display: none !important; }
+   
+   Cacher la section statistiques :
+   .stats-section { display: none !important; }
+   
+   Cacher la section FAQ :
+   .faq-section { display: none !important; }
+   
+   Cacher la section témoignages :
+   .testimonials-section { display: none !important; }
+   
+   Cacher le footer :
+   footer { display: none !important; }
+*/
+
+/* ============================================
+   VOS MODIFICATIONS PERSONNALISÉES
+   ============================================ */
+
+/* Cacher le bloc "Our Categories" sur la page d'accueil */
+.categories-section {
+    display: none !important;
+}
+

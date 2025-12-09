@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Améliorez votre expérience de vélo électrique grâce à l&#x27;écran Bafang DPC010, doté d&#x27;un écran de 4 pouces, d&#x27;une connectivité Bluetooth et de niveaux d&#x27;assistance au pédalage personnalisables pour un contrôle précis.">
+<title>Écran Bafang DPC010 : compteur de vitesse Bluetooth pour vélos électriques</title>
+<link rel="icon" type="image/x-icon" href="../../../images/favicon/favicon.ico">
+<link rel="alternate" hreflang="fr" href="https://bafang-shop.com/fr/produit.html" />
+<link rel="alternate" hreflang="en" href="https://bafang-shop.com/en/produit.html" />
+<link rel="alternate" hreflang="x-default" href="https://bafang-shop.com/fr/produit.html" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6;color:#333;background:#fff}
+header{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.1);position:sticky;top:0;z-index:1000}
+nav{max-width:1200px;margin:0 auto;padding:1.5rem 1rem;display:flex;justify-content:center;align-items:center;gap:2rem;position:relative}
+.logo{font-size:1.5rem;font-weight:700;color:#e60012;display:flex;align-items:center;gap:.5rem;flex-shrink:0;position:absolute;left:1rem;min-width:200px;text-decoration:none}
+.logo img{height:60px;width:auto;object-fit:contain;display:block}
+.menu{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap;margin:0 auto}
+.menu a{color:#333;text-decoration:none;font-weight:500;transition:color .2s;white-space:nowrap}
+.menu a:hover{color:#e60012}
+.menu-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#333}
+@media (max-width:768px){
+.menu-toggle{display:block}
+.menu{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1rem;box-shadow:0 4px 6px rgba(0,0,0,.1);display:none;gap:0}
+.menu.active{display:flex}
+.menu a{padding:.75rem 1rem;border-bottom:1px solid #f0f0f0}
+.menu a:last-child{border-bottom:none}
+.logo{min-width:auto;left:0.5rem}
+.logo img{height:35px !important}
+nav{padding:.75rem}
+}
+.product-detail{max-width:1200px;margin:0 auto;padding:3rem 1rem}
+.product-header{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:3rem}
+.product-images{display:flex;flex-direction:column;gap:1rem}
+.main-image{width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;background:#f5f5f5;display:block}
+.main-video{width:100%;aspect-ratio:1;border-radius:8px;background:#000;display:none}
+.thumbnails{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.thumbnail{width:100%;aspect-ratio:1;object-fit:contain;border-radius:4px;cursor:pointer;opacity:.7;transition:opacity .2s;background:#f5f5f5}
+.thumbnail-video{width:100%;aspect-ratio:1;border-radius:4px;cursor:pointer;opacity:.7;transition:opacity .2s;background:#000;position:relative;display:flex;align-items:center;justify-content:center}
+.thumbnail-video::before{content:'▶';position:absolute;color:#fff;font-size:1.5rem;z-index:1}
+.thumbnail-video img{width:100%;height:100%;object-fit:cover;opacity:.6}
+.thumbnail:hover,.thumbnail.active,.thumbnail-video:hover,.thumbnail-video.active{opacity:1;border:2px solid #e60012}
+.product-info h1{font-size:1.5rem;margin-bottom:1rem;color:#333}
+.product-price{color:#e60012;font-weight:700;font-size:1.5rem;margin:1rem 0}
+.description-short{margin:1.5rem 0;padding:1rem;background:#f9f9f9;border-radius:4px;color:#666;text-align:left;line-height:1.7}
+.description-long{margin:3rem 0;padding:2rem;background:#fafafa;border-radius:8px;line-height:1.9;color:#555;width:100%;max-width:100%;font-size:1.05rem;text-align:left}
+.description-long p{margin-bottom:1.2rem;text-align:left}
+.description-long p:first-child{margin-top:0}
+.description-long p:last-child{margin-bottom:0}
+.description-long ul,.description-long ol{margin:1.5rem 0;padding-left:0;line-height:1.8;list-style:none}
+.description-long li{margin-bottom:.8rem;padding-left:0}
+.description-long strong{color:#333;font-weight:600}
+.description-long em{color:#666;font-style:italic}
+.description-long h1,.description-long h2,.description-long h3,.description-long h4,.description-long h5,.description-long h6{display:none}
+.cta-button{display:inline-block;padding:1rem 2rem;background:transparent;color:#666;border:2px solid #999;text-align:center;text-decoration:none;border-radius:4px;font-weight:600;transition:color .2s,border-color .2s;margin-top:1rem;font-size:1.1rem}
+.cta-button:hover{color:#e60012;border-color:#e60012}
+.reviews-section{margin-top:3rem;padding-top:3rem;border-top:1px solid #e0e0e0}
+.reviews-title{font-size:1.5rem;margin-bottom:2rem;color:#333}
+.review-card{background:#f9f9f9;padding:1.5rem;border-radius:8px;margin-bottom:1.5rem}
+.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+.review-author{font-weight:600;color:#333}
+.review-date{color:#666;font-size:.9rem}
+.stars{color:#ffc107;font-size:1.2rem;letter-spacing:.2rem}
+.review-text{color:#666;line-height:1.6}
+.loading{text-align:center;padding:4rem 2rem;color:#666}
+footer{background:#f5f5f5;padding:2rem 1rem;margin-top:4rem;text-align:center;color:#666}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-bottom:1rem}
+.footer-links a{color:#666;text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#e60012}
+@media (max-width:768px){
+.product-header{grid-template-columns:1fr;gap:2rem}
+.product-detail{padding:2rem 1rem}
+.product-info h1{font-size:1.3rem}
+.thumbnails{grid-template-columns:repeat(3,1fr)}
+.description-long{padding:1.5rem;margin:2rem 0;font-size:1rem}
+.description-long ul,.description-long ol{padding-left:1.5rem}
+.reviews-section{margin-top:2rem;padding-top:2rem}
+.reviews-title{font-size:1.3rem}
+.review-card{padding:1rem}
+.footer-links{flex-direction:column;gap:1rem}
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="../../" class="logo" id="logo"><img src="../../../images/logo/logo.webp" alt="Logo"></a>
+<ul class="menu" id="menu">
+<li><a href="../../">ACCUEIL</a></li>
+<li><a href="../categories/1.html">CATALOGUE</a></li>
+</ul>
+<button class="menu-toggle" id="menu-toggle" aria-label="Menu">☰</button>
+</nav>
+</header>
+<div class="product-detail">
+<div class="product-header">
+<div class="product-images">
+<img src="../../../images/products/1005007531632516/image_1.webp" alt="Compteur de vitesse Bluetooth BAFANG DPC010 avec écran 3 pouces, protocole CAN, 6 niveaux, compatible avec les moteurs centraux M620, M600, M560, M510 et M420." class="main-image" id="main-image">
+<div class="thumbnails">
+<img src="../../../images/products/1005007531632516/image_1.webp" alt="Image 1" class="thumbnail active" onclick="showImage('../../../images/products/1005007531632516/image_1.webp',event)">
+<img src="../../../images/products/1005007531632516/image_2.webp" alt="Image 2" class="thumbnail " onclick="showImage('../../../images/products/1005007531632516/image_2.webp',event)">
+<img src="../../../images/products/1005007531632516/image_3.webp" alt="Image 3" class="thumbnail " onclick="showImage('../../../images/products/1005007531632516/image_3.webp',event)">
+<img src="../../../images/products/1005007531632516/image_4.webp" alt="Image 4" class="thumbnail " onclick="showImage('../../../images/products/1005007531632516/image_4.webp',event)">
+<img src="../../../images/products/1005007531632516/image_5.webp" alt="Image 5" class="thumbnail " onclick="showImage('../../../images/products/1005007531632516/image_5.webp',event)">
+<img src="../../../images/products/1005007531632516/image_6.webp" alt="Image 6" class="thumbnail " onclick="showImage('../../../images/products/1005007531632516/image_6.webp',event)">
+</div>
+</div>
+<div class="product-info">
+<h1>Compteur de vitesse Bluetooth BAFANG DPC010 avec écran 3 pouces, protocole CAN, 6 niveaux, compatible avec les moteurs centraux M620, M600, M560, M510 et M420.</h1>
+<div class="description-short">Prenez le contrôle de votre trajet grâce à l'écran Bafang DPC010, une interface élégante et intuitive conçue pour optimiser votre expérience à vélo électrique. Doté d'un écran lumineux de 4 pouces, ce compteur de vitesse offre une visibilité optimale des données essentielles. Surveillez facilement votre vitesse, le niveau de votre batterie, la distance parcourue et bien plus encore. Le DPC010 s'intègre parfaitement aux moteurs centraux Bafang (M620, M600, M560, M510, M420) via le protocole CAN, garantissant une transmission de données précise pour une expérience de conduite connectée.</p><ul><li><strong>Connectivité Bluetooth :</strong> Associez votre smartphone pour accéder à des fonctionnalités avancées et des options de personnalisation.</li><li>Niveaux d'assistance au pédalage réglables (0 à 6) : Ajustez la puissance délivrée à votre style de conduite et au terrain.</li><li>Écran couleur 4 pouces : Affichage clair et éclatant pour une lisibilité optimale, même en plein soleil.</li><li>Interface intuitive : Navigation simple et design convivial pour une utilisation simplifiée.</li></ul><p>Découvrez le futur du vélo électrique avec l'écran Bafang DPC010. Ses fonctionnalités avancées et son design centré sur l'utilisateur vous permettent de rouler plus intelligemment, plus sûrement et avec plus de plaisir que jamais.</p></div>
+<div class="product-rating" style="margin:1rem 0;display:flex;align-items:center;gap:0.5rem;">
+<span class="product-stars" style="color:#ffc107;font-size:1.2rem;">★★★★★</span>
+<span class="product-reviews" style="color:#666;font-size:0.9rem;">(22)</span>
+</div>
+<a href="https://s.click.aliexpress.com/e/_c4VuL7lT" class="cta-button" target="_blank" rel="noopener noreferrer">Voir sur AliExpress</a>
+</div>
+</div>
+<div class="description-long"><p>L'afficheur Bafang DPC010 est un compteur de vitesse complet conçu pour s'intégrer parfaitement avec certains moteurs centraux Bafang. Cet écran de 4 pouces offre une interface claire et intuitive, fournissant les informations essentielles à portée de main.</p><ul><li><strong>Connectivité Bluetooth :</strong> Connectez facilement votre écran à votre smartphone pour un suivi avancé des données et des options de personnalisation.</li><li>Compatibilité avec le protocole CAN : Assure une communication et un échange de données fluides avec les moteurs centraux Bafang compatibles, notamment les modèles M620, M600, M560, M510 et M420.</li><li>Assistance au pédalage multiniveaux : Ajustez votre expérience de conduite grâce à 6 niveaux d'assistance au pédalage, en adaptant la puissance à vos besoins et au terrain.</li><li>Écran LCD clair : Le grand écran de 4 pouces offre une visibilité optimale des données essentielles telles que la vitesse, le niveau de batterie, la distance parcourue, etc.</li></ul><p>L'écran Bafang DPC010 offre une gamme de spécifications conçues pour des performances et une expérience utilisateur optimales :</p><ul><li>Taille de l'écran : 4 pouces pouces</li><li>Connectivité : Bluetooth</li><li>Protocole : CAN</li><li>Niveaux d'assistance au pédalage : 0 à 6</li></ul><p>Cet écran offre aux cyclistes un contrôle accru, des informations détaillées et des options de personnalisation :</p><ul><li><strong>Informations en temps réel :</strong> Restez informé de votre vitesse, du niveau de batterie, de la distance parcourue et d'autres données essentielles pour une conduite sûre et efficace.</li><li>Expérience de conduite personnalisée : Personnalisez vos niveaux d'assistance au pédalage en fonction de vos préférences et des conditions de conduite.</li><li>Intégration smartphone : Accédez à des fonctionnalités avancées et au suivi des données grâce à la connectivité Bluetooth avec les smartphones compatibles.</li><li>Communication moteur fluide : Le protocole CAN assure une communication fluide entre l'écran et les moteurs centraux Bafang compatibles.</li></ul><p>L'installation et l'utilisation de l'écran Bafang DPC010 sont simples. Il suffit de le connecter à votre moteur central Bafang compatible en suivant les instructions fournies. L'interface intuitive permet une navigation aisée et un accès rapide aux informations essentielles. Utilisez la connexion Bluetooth pour synchroniser l'application avec votre smartphone et bénéficier de fonctionnalités avancées et d'une analyse des données plus poussée.</div>
+
+</div>
+<footer>
+<div class="footer-links">
+<a href="../../">Accueil</a>
+<a href="../../sitemap.xml">Plan du site</a>
+<a href="../legal/a-propos-de-nous.html">À propos de nous</a>
+<a href="../legal/conditions-dutilisation.html">Conditions d&#x27;utilisation</a>
+<a href="../legal/avis-juridique.html">Avis juridique</a>
+<a href="../legal/politique-de-confidentialite.html">politique de confidentialité</a>
+</div>
+<p>Contactez-nous: <a href="mailto:contact@evanstudio.net">contact@evanstudio.net</a></p>
+<p>© 2024 Partenaire AliExpress. Tous droits réservés.</p>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    if (menuToggle && menu) {
+        menuToggle.addEventListener('click', function() {
+            menu.classList.toggle('active');
+        });
+    }
+    
+    window.showImage = function(imgSrc, evt) {
+        const mainImg = document.getElementById('main-image');
+        const mainVid = document.getElementById('main-video');
+        if (mainImg) {
+            mainImg.src = imgSrc;
+            mainImg.style.display = 'block';
+        }
+        if (mainVid) {
+            mainVid.style.display = 'none';
+        }
+        document.querySelectorAll('.thumbnail,.thumbnail-video').forEach(t => t.classList.remove('active'));
+        if (evt && evt.target) {
+            evt.target.closest('.thumbnail,.thumbnail-video')?.classList.add('active');
+        }
+    };
+    
+    window.showVideo = function(evt) {
+        const mainImg = document.getElementById('main-image');
+        const mainVid = document.getElementById('main-video');
+        if (mainImg) {
+            mainImg.style.display = 'none';
+        }
+        if (mainVid) {
+            mainVid.style.display = 'block';
+        }
+        document.querySelectorAll('.thumbnail,.thumbnail-video').forEach(t => t.classList.remove('active'));
+        if (evt && evt.target) {
+            evt.target.closest('.thumbnail-video')?.classList.add('active');
+        }
+    };
+});
+</script>
+</body>
+</html>
+

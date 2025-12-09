@@ -35,7 +35,7 @@ def extract_images(image_paths_str, product_id):
 
 def generate_all_products_json():
     """Génère le fichier all_products.json"""
-    csv_file = Path(__file__).parent / 'CSV' / 'all_products.csv'
+    csv_file = Path(__file__).parent / 'all_products.csv'
     
     if not csv_file.exists():
         print(f"❌ Fichier {csv_file} introuvable")
@@ -75,14 +75,13 @@ def generate_all_products_json():
                     'meta_description': row.get('meta_description', ''),
                     'price': row.get('price', ''),
                     'reviews_count': reviews_count,
-                    'youtube_url': row.get('youtube_url', '').strip() if row.get('youtube_url') else '',
                 }
                 
                 # Ne garder que les produits avec un lien d'affiliation
                 if product['affiliate_link']:
                     products.append(product)
         
-        # Sauvegarder dans all_products.json (à la racine)
+        # Sauvegarder dans all_products.json
         output_file = Path(__file__).parent / 'all_products.json'
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(products, f, ensure_ascii=False, indent=2)

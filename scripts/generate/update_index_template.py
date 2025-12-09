@@ -520,7 +520,9 @@ def update_footer(html, translations):
     # Lien Sitemap
     sitemap_link = next((link for link in footer_links if 'sitemap' in link['key']), None)
     if sitemap_link:
-        footer_links_html.append(f'<a href="sitemap.xml">{escape_html_attr(sitemap_link["text"])}</a>')
+        # Utiliser le même chemin relatif que pour le lien home
+        sitemap_href = "./sitemap.xml" if get_home_link() == "./" else "sitemap.xml"
+        footer_links_html.append(f'<a href="{sitemap_href}">{escape_html_attr(sitemap_link["text"])}</a>')
     
     # Liens légaux (conditions, mentions, policy)
     # Ces liens pointent vers page_html/legal/{slug}.html

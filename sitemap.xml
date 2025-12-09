@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="https://bafang-shop.com/schemas/sitemap/0.9">
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://bafang-shop.com/sitemap-en.xml</loc>
-    <lastmod>2025-12-06</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://bafang-shop.com/sitemap-de.xml</loc>
-    <lastmod>2025-12-06</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://bafang-shop.com/sitemap-es.xml</loc>
-    <lastmod>2025-12-06</lastmod>
+    <lastmod>2025-12-09</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://bafang-shop.com/sitemap-fr.xml</loc>
-    <lastmod>2025-12-06</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://bafang-shop.com/sitemap-pt.xml</loc>
-    <lastmod>2025-12-06</lastmod>
+    <lastmod>2025-12-09</lastmod>
   </sitemap>
 </sitemapindex>

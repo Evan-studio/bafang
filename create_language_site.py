@@ -157,7 +157,8 @@ def copy_source_to_language(source_dir, target_lang_code):
         'robots.txt',
         'sitemap.xml',
         'sitemap.html',
-        'translations.csv'
+        'translations.csv',
+        'custom.css'
     ]
     
     # Dossiers à copier (sans images)
@@ -684,49 +685,42 @@ if __name__ == '__main__':
     print(f"  ✅ Script generate_all_{target_lang_code}.py créé")
 
 def create_upload_youtube_folder(lang_dir, lang_code):
-    """Crée le dossier upload youtube pour une langue avec les fichiers nécessaires."""
-    print(f"\n📹 Création du dossier upload youtube pour {lang_code}...")
+    """Copie tout le dossier upload youtube pour une langue."""
+    print(f"\n📹 Copie du dossier upload youtube pour {lang_code}...")
     
     upload_dir = lang_dir / 'upload youtube'
-    upload_dir.mkdir(parents=True, exist_ok=True)
     
-    # Copier les fichiers de credentials depuis le dossier principal
+    # Supprimer le dossier s'il existe déjà
+    if upload_dir.exists():
+        shutil.rmtree(upload_dir)
+    
+    # Copier tout le dossier upload youtube depuis le dossier principal
     source_upload_dir = BASE_DIR / 'upload youtube'
     
-    files_to_copy = [
-        'client_secret_938787798816-u7frdh82p7pckpj8hodtr3i1ss3fcjfu.apps.googleusercontent.com.json',
-    ]
+    if not source_upload_dir.exists():
+        print(f"  ⚠️  Dossier source non trouvé: {source_upload_dir}")
+        return None
     
-    for file_name in files_to_copy:
-        source_file = source_upload_dir / file_name
-        if source_file.exists():
-            target_file = upload_dir / file_name
-            shutil.copy2(source_file, target_file)
-            print(f"  ✅ {file_name} copié")
-        else:
-            print(f"  ⚠️  {file_name} non trouvé dans le dossier source")
+    # Copier tout le contenu du dossier
+    shutil.copytree(source_upload_dir, upload_dir)
+    print(f"  ✅ Dossier upload youtube copié pour {lang_code}")
     
-    # Créer un script helper pour lancer l'upload depuis ce dossier
-    helper_script = upload_dir / 'upload_videos.py'
-    helper_content = f'''#!/usr/bin/env python3
-"""
-Script helper pour lancer l'upload YouTube depuis le dossier {lang_code}.
-Ce script appelle le script principal auto_upload_multilingual.py
-"""
-import sys
-from pathlib import Path
-
-# Chemin vers le script principal
-ROOT_DIR = Path(__file__).parent.parent.parent
-MAIN_SCRIPT = ROOT_DIR / 'upload youtube' / 'auto_upload_multilingual.py'
-
-if __name__ == "__main__":
-    import subprocess
-    subprocess.run([sys.executable, str(MAIN_SCRIPT)])
-'''
-    helper_script.write_text(helper_content, encoding='utf-8')
-    helper_script.chmod(0o755)
-    print(f"  ✅ Script helper upload_videos.py créé")
+    # Supprimer les fichiers de tracking et credentials pour que chaque langue ait les siens
+    tracking_file = upload_dir / 'upload_tracking.json'
+    credentials_file = upload_dir / 'credentials.json'
+    config_file = upload_dir / 'upload_config.json'
+    
+    if tracking_file.exists():
+        tracking_file.unlink()
+        print(f"  ✅ upload_tracking.json supprimé (sera recréé pour cette langue)")
+    
+    if credentials_file.exists():
+        credentials_file.unlink()
+        print(f"  ✅ credentials.json supprimé (sera recréé lors de la première authentification)")
+    
+    if config_file.exists():
+        config_file.unlink()
+        print(f"  ✅ upload_config.json supprimé (sera recréé si nécessaire)")
     
     print(f"  ✅ Dossier upload youtube créé pour {lang_code}")
     return upload_dir
