@@ -1,6 +1,7 @@
 {
   "daily_uploads": {
-    "2025-12-08": 8
+    "2025-12-08": 8,
+    "2025-12-10": 4
   },
   "uploads": {
     "en_1005007958094145": {
@@ -58,6 +59,34 @@
       "youtube_url": "https://www.youtube.com/watch?v=CM5oVZJusKw",
       "upload_date": "2025-12-08",
       "upload_datetime": "2025-12-08T23:00:31.118750"
+    },
+    "en_1005010020220575": {
+      "lang": "en",
+      "product_id": "1005010020220575",
+      "youtube_url": "https://www.youtube.com/watch?v=X9kIlOVGp7I",
+      "upload_date": "2025-12-10",
+      "upload_datetime": "2025-12-10T09:55:11.367885"
+    },
+    "en_1005007875233102": {
+      "lang": "en",
+      "product_id": "1005007875233102",
+      "youtube_url": "https://www.youtube.com/watch?v=tSxdjC797iM",
+      "upload_date": "2025-12-10",
+      "upload_datetime": "2025-12-10T09:55:18.094001"
+    },
+    "en_1005007870108562": {
+      "lang": "en",
+      "product_id": "1005007870108562",
+      "youtube_url": "https://www.youtube.com/watch?v=TJZcdOoplYw",
+      "upload_date": "2025-12-10",
+      "upload_datetime": "2025-12-10T09:55:24.727991"
+    },
+    "en_1005010242474471": {
+      "lang": "en",
+      "product_id": "1005010242474471",
+      "youtube_url": "https://www.youtube.com/watch?v=ydEHOxI3S7Q",
+      "upload_date": "2025-12-10",
+      "upload_datetime": "2025-12-10T09:56:00.393130"
     }
   }
 }

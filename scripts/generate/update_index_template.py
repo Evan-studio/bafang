@@ -210,33 +210,21 @@ def update_canonical_and_hreflang(html, translations):
     else:
         canonical_url = f'{domain}/{lang_code}/'
     
-    # Générer les hreflang pour toutes les langues disponibles
-    # Détecter les langues disponibles depuis la racine du projet
-    # Si BASE_DIR est un dossier de langue (ex: fr/), remonter à la racine
-    root_dir = BASE_DIR
-    if len(BASE_DIR.name) == 2 and BASE_DIR.name.isalpha():
-        # On est dans un dossier de langue, remonter à la racine
-        root_dir = BASE_DIR.parent
-    
-    available_languages = []
-    if (root_dir / 'index.html').exists():
-        available_languages.append(('en', ''))
-    
-    for item in root_dir.iterdir():
-        if (item.is_dir() and not item.name.startswith('.') and 
-            item.name not in ['APPLI:SCRIPT aliexpress', 'scripts', 'config', 'images', 'page_html', 
-                              'upload_cloudflare', 'sauv', 'CSV', '__pycache__', '.git', 'node_modules', 'upload youtube'] and
-            (item / 'index.html').exists()):
-            lang = item.name.lower()
-            available_languages.append((lang, f'/{lang}'))
-    
-    # Générer les hreflang
+    # Générer les hreflang pour toutes les langues
     hreflang_links = []
-    for lang, path in available_languages:
+    languages = [
+        ('en', ''),
+        ('fr', '/fr'),
+        ('de', '/de'),
+        ('es', '/es'),
+        ('pt', '/pt')
+    ]
+    
+    for lang, path in languages:
         hreflang_url = f'{domain}{path}/'
         hreflang_links.append(f'<link rel="alternate" hreflang="{lang}" href="{hreflang_url}" />')
     
-    # Ajouter x-default (vers la langue principale)
+    # Ajouter x-default
     hreflang_links.append(f'<link rel="alternate" hreflang="x-default" href="{domain}/" />')
     
     hreflang_html = '\n'.join(hreflang_links)
@@ -269,48 +257,11 @@ def update_canonical_and_hreflang(html, translations):
     print(f"  ✅ Canonical et hreflang mis à jour")
     return html
 
-def update_favicon(html, translations):
-    """Met à jour la favicon avec une URL absolue pour Google."""
-    domain = get_translation('site.domain', translations, 'https://bafang-shop.com')
-    if domain:
-        domain = domain.rstrip('/')
-    
-    lang_code = detect_language_code()
-    
-    # Construire l'URL absolue de la favicon
-    if lang_code == 'en':
-        favicon_url = f'{domain}/images/favicon/favicon.ico'
-    else:
-        favicon_url = f'{domain}/images/favicon/favicon.ico'
-    
-    # Remplacer tous les chemins relatifs de favicon par l'URL absolue
-    html = re.sub(
-        r'<link rel="icon"[^>]*href="[^"]*favicon[^"]*"[^>]*>',
-        f'<link rel="icon" type="image/x-icon" href="{favicon_url}">',
-        html,
-        flags=re.IGNORECASE
-    )
-    
-    # Ajouter aussi apple-touch-icon et autres formats si nécessaire
-    if '<link rel="apple-touch-icon"' not in html:
-        # Insérer après la favicon
-        html = re.sub(
-            r'(<link rel="icon"[^>]*>)',
-            r'\1\n<link rel="apple-touch-icon" href="' + favicon_url + '">',
-            html,
-            flags=re.IGNORECASE
-        )
-    
-    return html
-
 def update_meta_tags(html, translations):
     """Met à jour les meta tags (title, description) et le schema.org JSON-LD."""
     site_title = get_translation('site.meta.title', translations, 'AliExpress Affiliate Program - Best Products')
     site_description = get_translation('site.meta.description', translations, 'Discover the best AliExpress products')
     contact_email = get_translation('site.contact.email', translations, 'contact@naturehike-shop.com')
-    
-    # Mettre à jour la favicon avec URL absolue
-    html = update_favicon(html, translations)
     
     # Mettre à jour le <title>
     html = re.sub(r'<title>.*?</title>', f'<title>{escape_html_attr(site_title)}</title>', html, flags=re.DOTALL)
@@ -569,9 +520,7 @@ def update_footer(html, translations):
     # Lien Sitemap
     sitemap_link = next((link for link in footer_links if 'sitemap' in link['key']), None)
     if sitemap_link:
-        # Utiliser le même chemin relatif que pour le lien home
-        sitemap_href = "./sitemap.xml" if get_home_link() == "./" else "sitemap.xml"
-        footer_links_html.append(f'<a href="{sitemap_href}">{escape_html_attr(sitemap_link["text"])}</a>')
+        footer_links_html.append(f'<a href="sitemap.xml">{escape_html_attr(sitemap_link["text"])}</a>')
     
     # Liens légaux (conditions, mentions, policy)
     # Ces liens pointent vers page_html/legal/{slug}.html

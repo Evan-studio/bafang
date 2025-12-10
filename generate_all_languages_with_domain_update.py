@@ -13,141 +13,133 @@ Usage:
     python3 generate_all_languages_with_domain_update.py
 """
 
+import csv
 import subprocess
 import sys
-import csv
-import re
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
-
-# Dossiers à exclure lors de la détection des langues
-EXCLUDED_DIRS = {
-    'APPLI:SCRIPT aliexpress', 'scripts', 'config', 'images', 'page_html', 
-    'upload_cloudflare', 'sauv', 'CSV', '__pycache__', '.git', 'node_modules',
-    'upload youtube'
-}
-
-# Noms de langues
-LANGUAGE_NAMES = {
-    'en': 'Anglais',
-    'fr': 'Français',
-    'de': 'Allemand',
-    'es': 'Espagnol',
-    'pt': 'Portugais',
-    'it': 'Italien',
-    'nl': 'Néerlandais',
-    'ru': 'Russe',
-    'pl': 'Polonais',
-}
 
 def detect_languages():
     """Détecte automatiquement toutes les langues disponibles."""
     languages = []
     
-    # Ajouter le dossier principal (en) s'il existe
-    root_index = BASE_DIR / 'index.html'
-    root_translations = BASE_DIR / 'translations.csv'
-    root_generate_script = BASE_DIR / 'generate_all_en.py'
-    
-    if root_index.exists() and root_translations.exists():
+    # Langue principale (en) - dossier racine
+    if (BASE_DIR / 'index.html').exists() and (BASE_DIR / 'translations.csv').exists():
         languages.append({
             'code': 'en',
-            'name': LANGUAGE_NAMES.get('en', 'Anglais'),
-            'generate_script': root_generate_script,
+            'name': 'Anglais',
+            'generate_script': BASE_DIR / 'generate_all_en.py',
             'update_script': BASE_DIR / 'scripts' / 'generate' / 'update_domain_urls.py',
             'dir': BASE_DIR
         })
     
-    # Détecter les dossiers de langue
-    for item in BASE_DIR.iterdir():
-        if (item.is_dir() and 
-            not item.name.startswith('.') and 
-            item.name not in EXCLUDED_DIRS and
-            (item / 'index.html').exists() and 
-            (item / 'translations.csv').exists()):
+    # Autres langues - dossiers avec index.html et translations.csv
+    for lang_dir in BASE_DIR.iterdir():
+        if lang_dir.is_dir() and not lang_dir.name.startswith('.') and lang_dir.name not in ['scripts', 'CSV', 'upload youtube', 'page_html']:
+            index_file = lang_dir / 'index.html'
+            translations_file = lang_dir / 'translations.csv'
             
-            lang_code = item.name.lower()
-            generate_script = item / 'scripts' / f'generate_all_{lang_code}.py'
-            update_script = item / 'scripts' / 'generate' / 'update_domain_urls.py'
-            
-            languages.append({
-                'code': lang_code,
-                'name': LANGUAGE_NAMES.get(lang_code, lang_code.upper()),
-                'generate_script': generate_script,
-                'update_script': update_script,
-                'dir': item
-            })
+            if index_file.exists() and translations_file.exists():
+                lang_code = lang_dir.name
+                # Nom de la langue depuis translations.csv ou utiliser le code
+                lang_name = lang_code.upper()
+                try:
+                    import pandas as pd
+                    df = pd.read_csv(translations_file, nrows=1)
+                    if 'langue' in df.columns:
+                        lang_name = df['langue'].iloc[0] if pd.notna(df['langue'].iloc[0]) else lang_code.upper()
+                except:
+                    pass
+                
+                generate_script = lang_dir / 'scripts' / f'generate_all_{lang_code}.py'
+                update_script = lang_dir / 'scripts' / 'generate' / 'update_domain_urls.py'
+                
+                languages.append({
+                    'code': lang_code,
+                    'name': lang_name,
+                    'generate_script': generate_script,
+                    'update_script': update_script,
+                    'dir': lang_dir
+                })
     
-    return sorted(languages, key=lambda x: (x['code'] != 'en', x['code']))
+    return languages
 
-def load_domain_from_translations(translations_path: Path):
-    """Lit translations.csv et renvoie la première valeur non vide pour site.domain."""
-    if not translations_path.exists():
-        return None
+LANGUAGES = detect_languages()
+
+
+def propagate_youtube_urls_from_root():
+    """
+    Copie les youtube_url depuis CSV/all_products.csv (racine)
+    vers chaque CSV de langue si la valeur est manquante.
+    """
+    root_csv = BASE_DIR / 'CSV' / 'all_products.csv'
+    if not root_csv.exists():
+        print("⚠️  CSV racine introuvable, propagation youtube ignorée")
+        return
+
+    # Construire un mapping product_id -> youtube_url (non vide) depuis le CSV racine
+    root_youtube_map = {}
     try:
-        with translations_path.open(newline='', encoding='utf-8') as f:
+        with open(root_csv, 'r', encoding='utf-8', newline='') as f:
             reader = csv.DictReader(f)
             for row in reader:
-                if row.get('key', '').strip() == 'site.domain':
-                    # Chercher la première colonne non vide (hors key/description)
-                    for k, v in row.items():
-                        if k in ('key', 'description'):
-                            continue
-                        if v and v.strip():
-                            return v.strip()
-                    break
+                pid = (row.get('product_id') or '').strip()
+                yt = (row.get('youtube_url') or '').strip()
+                if pid and yt:
+                    root_youtube_map[pid] = yt
     except Exception as e:
-        print(f"  ⚠️  Impossible de lire {translations_path}: {e}")
-    return None
+        print(f"⚠️  Impossible de lire le CSV racine pour les youtube_url : {e}")
+        return
 
-def update_robots_sitemap(domain: str, lang_code: str, robots_path: Path):
-    """Met à jour (ou ajoute) la ligne Sitemap dans robots.txt pour la langue donnée."""
-    domain = domain.rstrip('/')
-    sitemap_url = f"{domain}/sitemap.xml" if lang_code == 'en' else f"{domain}/{lang_code}/sitemap.xml"
-    sitemap_line = f"Sitemap: {sitemap_url}"
+    if not root_youtube_map:
+        print("ℹ️  Aucun youtube_url détecté dans le CSV racine, rien à propager")
+        return
 
-    if not robots_path.exists():
-        return False
+    print(f"🔄 Propagation des youtube_url vers {len(LANGUAGES)} langues...")
 
-    try:
-        content = robots_path.read_text(encoding='utf-8')
-        # Remplacer la ligne Sitemap existante ou l'ajouter en bas si absente
-        if re.search(r'^Sitemap: .*', content, flags=re.MULTILINE):
-            content_new = re.sub(r'^Sitemap: .*', sitemap_line, content, flags=re.MULTILINE)
-        else:
-            if not content.endswith('\n'):
-                content += '\n'
-            content_new = content + sitemap_line + '\n'
+    for lang in LANGUAGES:
+        # Le dossier racine (en) utilise déjà root_csv
+        if lang['code'] == 'en':
+            continue
 
-        if content_new != content:
-            robots_path.write_text(content_new, encoding='utf-8')
-        return True
-    except Exception as e:
-        print(f"  ⚠️  Impossible de mettre à jour {robots_path}: {e}")
-        return False
+        lang_csv = lang['dir'] / 'CSV' / 'all_products.csv'
+        if not lang_csv.exists():
+            print(f"  ⚠️  CSV manquant pour {lang['code']}: {lang_csv}")
+            continue
 
-def update_all_robots_sitemaps(languages):
-    """Met à jour robots.txt pour la racine et chaque langue avec le bon sitemap."""
-    updated = 0
-    for lang in languages:
-        lang_code = lang['code']
-        lang_dir = lang['dir']
-        translations_path = lang_dir / 'translations.csv'
-        robots_path = lang_dir / 'robots.txt'
+        try:
+            with open(lang_csv, 'r', encoding='utf-8', newline='') as f:
+                reader = csv.DictReader(f)
+                rows = list(reader)
+                fieldnames = reader.fieldnames or []
 
-        domain = load_domain_from_translations(translations_path)
-        if not domain:
-            # Fallback sur le domaine de la racine si non trouvé
-            root_domain = load_domain_from_translations(BASE_DIR / 'translations.csv')
-            domain = root_domain or 'https://bafang-shop.com'
+            # S'assurer que la colonne existe
+            if 'youtube_url' not in fieldnames:
+                fieldnames = fieldnames + ['youtube_url']
 
-        if update_robots_sitemap(domain, lang_code, robots_path):
-            updated += 1
-    if updated:
-        print(f"  ✅ robots.txt mis à jour ({updated} fichier(s))")
-    else:
-        print("  ⚠️  Aucun robots.txt mis à jour")
+            updated = False
+            for row in rows:
+                pid = (row.get('product_id') or '').strip()
+                if not pid:
+                    continue
+                yt_root = root_youtube_map.get(pid, '')
+                yt_lang = (row.get('youtube_url') or '').strip()
+                if yt_root and not yt_lang:
+                    row['youtube_url'] = yt_root
+                    updated = True
+
+            if updated:
+                with open(lang_csv, 'w', encoding='utf-8', newline='') as f:
+                    writer = csv.DictWriter(f, fieldnames=fieldnames)
+                    writer.writeheader()
+                    writer.writerows(rows)
+                print(f"  ✅ youtube_url propagées pour {lang['code']}")
+            else:
+                print(f"  ℹ️  Rien à mettre à jour pour {lang['code']}")
+
+        except Exception as e:
+            print(f"  ❌ Erreur propagation youtube pour {lang['code']}: {e}")
 
 def run_script(script_path, lang_name, step_name):
     """Exécute un script."""
@@ -182,39 +174,17 @@ def main():
     print("🌍 RÉGÉNÉRATION COMPLÈTE + MISE À JOUR DES DOMAINES")
     print("=" * 70)
     print()
-    
-    # Détecter automatiquement les langues
-    languages = detect_languages()
-    
-    if not languages:
-        print("❌ Aucune langue détectée")
-        print("   Assurez-vous que le dossier principal ou les dossiers de langue")
-        print("   contiennent index.html et translations.csv")
-        sys.exit(1)
-    
-    print(f"✅ {len(languages)} langue(s) détectée(s):")
-    for lang in languages:
-        print(f"   - {lang['name']} ({lang['code']})")
-    print()
+
+    # Propager les youtube_url vers les CSV de chaque langue avant génération
+    propagate_youtube_urls_from_root()
     
     success_count = 0
-    total_count = len(languages)
+    total_count = len(LANGUAGES)
     
-    for lang in languages:
+    for lang in LANGUAGES:
         print(f"\n{'=' * 70}")
         print(f"🌐 {lang['name'].upper()} ({lang['code']})")
         print(f"{'=' * 70}")
-        
-        # Vérifier si les scripts existent
-        if not lang['generate_script'].exists():
-            print(f"  ⚠️  Script de génération non trouvé: {lang['generate_script']}")
-            print(f"     Créez d'abord cette langue avec: python3 create_language_site.py")
-            continue
-        
-        if not lang['update_script'].exists():
-            print(f"  ⚠️  Script de mise à jour des domaines non trouvé: {lang['update_script']}")
-            print(f"     Créez d'abord cette langue avec: python3 create_language_site.py")
-            continue
         
         # Étape 1: Génération
         if not run_script(lang['generate_script'], lang['name'], "Génération"):
@@ -227,10 +197,6 @@ def main():
             continue
         
         success_count += 1
-
-    # Mettre à jour robots.txt (Sitemap) avec les bons domaines
-    print("\n📄 Mise à jour des robots.txt (Sitemap)...")
-    update_all_robots_sitemaps(languages)
     
     print()
     print("=" * 70)
