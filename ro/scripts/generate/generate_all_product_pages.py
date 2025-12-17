@@ -14,6 +14,8 @@ import csv
 import re
 import random
 import unicodedata
+import json
+from datetime import datetime
 from pathlib import Path
 from html import escape
 
@@ -463,6 +465,84 @@ def generate_product_page_html(product, translations):
         html,
         flags=re.DOTALL
     )
+    
+    # 6.5. Ajouter le markup schema.org VideoObject si vidéo YouTube présente
+    if has_youtube and youtube_id:
+        domain = get_translation('site.domain', translations, 'https://bafang-shop.com')
+        domain = domain.rstrip('/') if domain else 'https://bafang-shop.com'
+        
+        # Construire l'URL complète de la page produit
+        lang_prefix = f'/{lang_code}/' if lang_code != 'en' else '/'
+        page_url = f"{domain}{lang_prefix}page_html/products/produit-{clean_product_id}.html"
+        
+        # URL de la vidéo YouTube
+        embed_url = f"https://www.youtube.com/embed/{youtube_id}"
+        watch_url = f"https://www.youtube.com/watch?v={youtube_id}"
+        
+        # URL de la miniature (première image du produit, convertie en URL absolue)
+        thumbnail_url = main_image
+        if thumbnail_url.startswith('../../../'):
+            # Convertir le chemin relatif en URL absolue
+            thumbnail_url = f"{domain}{thumbnail_url.replace('../../../', '/')}"
+        elif thumbnail_url.startswith('../'):
+            # Convertir le chemin relatif en URL absolue
+            thumbnail_url = f"{domain}{thumbnail_url.replace('../', '/')}"
+        elif not thumbnail_url.startswith('http'):
+            # Si c'est un chemin relatif simple
+            thumbnail_url = f"{domain}/{thumbnail_url.lstrip('/')}"
+        
+        # Description pour la vidéo (utiliser description_short ou title)
+        video_description = description_short if description_short else title
+        # Nettoyer le HTML de la description
+        video_description = re.sub(r'<[^>]+>', '', video_description)  # Supprimer les balises HTML
+        video_description = video_description.strip()[:200]  # Limiter à 200 caractères
+        
+        # Date d'upload (utiliser la date actuelle)
+        upload_date = datetime.now().strftime('%Y-%m-%d')
+        
+        # Créer le JSON-LD VideoObject
+        video_schema = {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": escape_html_attr(title),
+            "description": escape_html_attr(video_description),
+            "thumbnailUrl": thumbnail_url,
+            "uploadDate": upload_date,
+            "contentUrl": watch_url,
+            "embedUrl": embed_url,
+            "duration": "PT1M",  # Durée par défaut (1 minute), peut être ajustée si disponible
+            "publisher": {
+                "@type": "Organization",
+                "name": "BAFANG Shop",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": f"{domain}/images/logo/logo.webp"
+                }
+            }
+        }
+        
+        # Convertir en JSON
+        video_schema_json = json.dumps(video_schema, indent=2, ensure_ascii=False)
+        
+        # Insérer le schema dans le <head>
+        schema_script = f'<script type="application/ld+json">\n{video_schema_json}\n</script>'
+        
+        # Insérer juste avant </head>
+        if re.search(r'</head>', html):
+            html = re.sub(
+                r'(</head>)',
+                schema_script + '\n\\1',
+                html,
+                count=1
+            )
+        else:
+            # Si pas de </head>, insérer avant </body>
+            html = re.sub(
+                r'(</body>)',
+                schema_script + '\n\\1',
+                html,
+                count=1
+            )
     
     # 6. Remplacer le footer
     html = re.sub(
