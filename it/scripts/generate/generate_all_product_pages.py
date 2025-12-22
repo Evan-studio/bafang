@@ -89,7 +89,7 @@ def get_translation(key, translations, default=''):
     """Récupère une traduction depuis le dictionnaire."""
     return translations.get(key, default)
 
-def update_favicon_absolute(html, translations):
+def update_favicon_absolute_new(html, translations):
     """Met à jour la favicon avec une URL absolue pour Google."""
     domain = get_translation('site.domain', translations, 'https://bafang-shop.com')
     if domain:
